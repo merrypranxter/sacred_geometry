@@ -1,0 +1,37 @@
+{
+  "name": "sacred_geometry",
+  "version": "1.0.0",
+  "description": "Sacred geometry reference database + generative art toolkit. Mathematical constructions, YAML data, p5.js sketches, and GLSL shaders.",
+  "author": "merrypranxter",
+  "license": "MIT",
+  "homepage": "https://github.com/merrypranxter/sacred_geometry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/merrypranxter/sacred_geometry.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node utils/math/sacred_math.js",
+    "generate:metatrons-cube": "node svg/generators/metatrons_cube.js > svg/output/metatrons_cube.svg",
+    "generate:all": "npm run generate:metatrons-cube",
+    "math": "node utils/math/sacred_math.js"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "keywords": [
+    "sacred geometry",
+    "generative art",
+    "mathematics",
+    "GLSL",
+    "p5js",
+    "flower of life",
+    "metatron",
+    "golden ratio",
+    "fibonacci",
+    "platonic solids",
+    "mandala",
+    "shader"
+  ]
+}

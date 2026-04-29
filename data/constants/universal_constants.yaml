@@ -1,0 +1,172 @@
+# Universal Mathematical Constants
+# Used across all sacred geometry constructions
+
+name: "Universal Constants"
+description: >
+  The foundational mathematical constants that appear throughout sacred geometry.
+  These are not arbitrary — they emerge from pure geometric relationships.
+
+constants:
+
+  phi:
+    symbol: "φ"
+    name: "Golden Ratio / Divine Proportion"
+    value: 1.6180339887498948482
+    decimal_expansion: "1.618033988749894848204586834365..."
+    exact_form: "(1 + √5) / 2"
+    inverse: 0.6180339887498948482
+    square: 2.6180339887498948482
+    properties:
+      - "φ² = φ + 1"
+      - "1/φ = φ - 1"
+      - "φ = 2·cos(π/5)"
+      - "Limit of consecutive Fibonacci ratios"
+      - "Only number whose reciprocal differs by 1"
+    geometry_appears_in:
+      - "Pentagon and pentagram diagonals"
+      - "Golden rectangle"
+      - "Logarithmic spiral"
+      - "Dodecahedron and icosahedron"
+      - "Flower of Life proportions"
+      - "Human body proportions (Vitruvian)"
+    traditions:
+      greek: "Used in Parthenon construction (disputed but plausible)"
+      egyptian: "Appears in Great Pyramid proportions"
+      renaissance: "Called 'sectio divina' by Luca Pacioli"
+
+  pi:
+    symbol: "π"
+    name: "Pi / Circle Constant"
+    value: 3.14159265358979323846
+    decimal_expansion: "3.14159265358979323846264338327..."
+    properties:
+      - "Circumference = 2πr"
+      - "Area = πr²"
+      - "Transcendental (not root of any polynomial)"
+      - "Irrational"
+    geometry_appears_in:
+      - "All circular constructions"
+      - "Sphere geometry"
+      - "Torus topology"
+      - "Sine/cosine waves"
+      - "All angle-based sacred forms"
+
+  sqrt2:
+    symbol: "√2"
+    name: "Square Root of 2 / Pythagoras's Constant"
+    value: 1.41421356237309504880
+    exact_form: "Diagonal of unit square"
+    construction: "Diagonal of any square = side × √2"
+    properties:
+      - "First known irrational number"
+      - "√2 = 2·sin(45°) = 2·cos(45°)"
+    geometry_appears_in:
+      - "Vesica Piscis (√3 sibling)"
+      - "Octahedron proportions"
+      - "A-series paper ratios (ISO 216)"
+      - "Square root spiral"
+
+  sqrt3:
+    symbol: "√3"
+    name: "Square Root of 3 / Theodorus's Constant"
+    value: 1.73205080756887729352
+    exact_form: "Height of equilateral triangle with side 2"
+    construction: "Vesica Piscis width-to-height ratio"
+    properties:
+      - "√3 = 2·sin(60°)"
+      - "Hexagonal tiling ratio"
+    geometry_appears_in:
+      - "Vesica Piscis"
+      - "Equilateral triangle"
+      - "Hexagonal grid"
+      - "Flower of Life"
+      - "Star of David / Star Tetrahedron"
+
+  sqrt5:
+    symbol: "√5"
+    name: "Square Root of 5"
+    value: 2.23606797749978969640
+    relationship_to_phi: "φ = (1 + √5) / 2"
+    geometry_appears_in:
+      - "Golden ratio construction"
+      - "Pentagon geometry"
+      - "Pythagorean triple (1, 2, √5)"
+
+  euler:
+    symbol: "e"
+    name: "Euler's Number"
+    value: 2.71828182845904523536
+    properties:
+      - "Base of natural logarithm"
+      - "d/dx(eˣ) = eˣ"
+      - "Transcendental"
+    geometry_appears_in:
+      - "Logarithmic spiral: r = ae^(bθ)"
+      - "Catenary curve"
+      - "Gaussian/normal distribution"
+
+  tau:
+    symbol: "τ"
+    name: "Tau"
+    value: 6.28318530717958647692
+    exact_form: "2π"
+    description: >
+      Full turn in radians. Some geometers prefer τ over π as the primary
+      circle constant since it maps directly to one full rotation.
+
+sequences:
+
+  fibonacci:
+    name: "Fibonacci Sequence"
+    description: "Each term = sum of two preceding terms"
+    seed: [0, 1]
+    first_20: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+    formula: "F(n) = F(n-1) + F(n-2)"
+    limit_ratio: "φ (Golden Ratio)"
+    geometry_appears_in:
+      - "Spiral phyllotaxis (sunflower seeds, pinecones)"
+      - "Golden spiral approximation"
+      - "Petal counts in flowers"
+      - "Branching in trees"
+
+  lucas:
+    name: "Lucas Numbers"
+    description: "Fibonacci variant starting with 2, 1"
+    seed: [2, 1]
+    first_15: [2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, 199, 322, 521, 843]
+    limit_ratio: "φ (same as Fibonacci)"
+
+  platonic_solid_numbers:
+    description: "Vertex, edge, face counts for all Platonic solids"
+    euler_characteristic: "V - E + F = 2 (always)"
+    solids:
+      tetrahedron: { V: 4, E: 6, F: 4 }
+      hexahedron: { V: 8, E: 12, F: 6 }
+      octahedron: { V: 6, E: 12, F: 8 }
+      dodecahedron: { V: 20, E: 30, F: 12 }
+      icosahedron: { V: 12, E: 30, F: 20 }
+
+key_angles:
+  - { degrees: 36, radians: "π/5", significance: "Pentagon / pentagram inner angle" }
+  - { degrees: 45, radians: "π/4", significance: "Square diagonal / octahedron" }
+  - { degrees: 51.83, radians: "~0.905", significance: "Great Pyramid slope angle" }
+  - { degrees: 60, radians: "π/3", significance: "Equilateral triangle / hexagon" }
+  - { degrees: 72, radians: "2π/5", significance: "Pentagon vertex angle" }
+  - { degrees: 108, radians: "3π/5", significance: "Pentagon interior angle" }
+  - { degrees: 120, radians: "2π/3", significance: "Hexagon interior angle" }
+  - { degrees: 137.5, radians: "~2.399", significance: "Golden angle (360/φ²) — phyllotaxis" }
+  - { degrees: 144, radians: "4π/5", significance: "Pentagram point" }
+
+sacred_numbers:
+  3: "Trinity, triangle, synthesis"
+  4: "Stability, elements, square"
+  5: "Life, pentagram, phi geometry"
+  6: "Harmony, hexagon, carbon"
+  7: "Mystical prime, seed of life circles"
+  8: "Octave, octahedron, regeneration"
+  9: "Completion, Sri Yantra triangles"
+  10: "Tetractys, Pythagorean perfection"
+  12: "Cosmic order, dodecahedron faces"
+  13: "Fruit of Life circles"
+  19: "Flower of Life circles"
+  64: "I Ching hexagrams, tetrahedron grid"

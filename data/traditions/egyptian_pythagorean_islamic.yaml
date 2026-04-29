@@ -1,0 +1,287 @@
+# Egyptian Sacred Geometry Tradition
+name: "Ancient Egyptian"
+tradition_type: "Theocratic Sacred Science"
+primary_texts:
+  - "Rhind Mathematical Papyrus (~1550 BCE)"
+  - "Moscow Mathematical Papyrus (~1850 BCE)"
+  - "Pyramid Texts (~2400–2300 BCE)"
+  - "Book of the Dead / Book of Coming Forth by Day"
+  - "Hermetic Corpus (attributed to Thoth/Hermes)"
+
+primary_geometric_forms:
+  - "Pyramid (square base + triangular faces)"
+  - "Djed pillar (stability column)"
+  - "Ankh (looped cross)"
+  - "Eye of Horus (Wedjat)"
+  - "Merkabah (divine boat)"
+
+great_pyramid:
+  name: "Great Pyramid of Giza"
+  pharaoh: "Khufu (Cheops)"
+  date: "~2560 BCE"
+  
+  measurements:
+    base_side_original_cubits: 440
+    height_original_cubits: 280
+    royal_cubit_meters: 0.5236
+    base_side_meters: 230.4
+    height_meters: 146.7
+    
+  embedded_constants:
+    pi:
+      claim: "Perimeter / (2 × height) = 2π (within 0.1%)"
+      calculation: "(4 × 230.4) / (2 × 146.7) = 921.6 / 293.4 ≈ 3.1416"
+      status: "Mathematically true — whether intentional is debated"
+      
+    phi:
+      claim: "Slant height / half base = φ"
+      calculation: "186.4 / 115.2 ≈ 1.618"
+      status: "Close to φ — debated whether intentional or consequence of π relationship"
+      note: "If you choose h = φ², then perimeter/height = 2π automatically. The two encode together."
+      
+    slope_angle:
+      degrees: 51.8428  # arctan(4/π) ≈ arctan(φ²/π...)
+      seked: "5.5 palms per cubit rise (Egyptian measurement)"
+      
+  sacred_proportions:
+    royal_cubit: "= 7 palms = 28 fingers ≈ 0.5236 m (= π/6)"
+    note: "The cubit itself encodes π in its definition relative to the meter — or did the Egyptians know the Earth's size?"
+
+geometry_in_egyptian_art:
+  canon_of_proportion:
+    description: "Standard grid system for human figures"
+    grid: "Standing figure = 18 units tall (later period: 21)"
+    seated: "14 units"
+    proportional_key: "Fist-to-elbow = 1 unit (royal cubit-derived)"
+  
+  eye_of_horus_fractions:
+    description: "The 6 parts of the Wedjat eye represent fractions of a heqat (grain measure)"
+    right_of_pupil: "1/2"
+    pupil: "1/4"
+    eyebrow: "1/8"
+    left_of_pupil: "1/16"
+    curved_tail: "1/32"
+    teardrop: "1/64"
+    sum: "63/64 (the missing 1/64 was 'made up' by Thoth)"
+    connection_to_binary: "These are powers of 1/2 from 1/2 to 1/64"
+
+neter_geometry:
+  description: "Neter (god) forms encode geometric principles"
+  thoth:
+    name: "Thoth / Djehuti"
+    role: "God of mathematics, geometry, writing, time, magic"
+    hermes_equivalence: "Hermes Trismegistus in Hellenistic synthesis"
+    sacred_number: 8
+    ibis_head: "Symbolic — measurement tool (beak = balance/scale)"
+  ptah:
+    name: "Ptah"
+    role: "Creator god, artisan, architect of the universe"
+    sacred_geometry: "Created through thought and word — geometric idealism"
+  osiris_resurrection:
+    name: "Osiris — Resurrection Geometry"
+    myth: "Osiris dismembered into 14 pieces, reassembled by Isis"
+    geometric_reading: "Fragmentation and reintegration of wholeness"
+    14_pieces: "14 = 7×2 (two cycles of the 7-fold sacred number)"
+
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# Pythagorean Sacred Geometry
+name: "Pythagorean / Greek"
+tradition_type: "Philosophical-Mathematical"
+primary_texts:
+  - "Euclid — Elements (~300 BCE)"
+  - "Plato — Timaeus (~360 BCE)"
+  - "Plato — Republic (~380 BCE)"
+  - "Pythagoras — (no direct writings survive)"
+  - "Nicomachus — Introduction to Arithmetic (~100 CE)"
+  - "Proclus — Commentary on Euclid (~450 CE)"
+
+primary_geometric_forms:
+  - "The five Platonic Solids"
+  - "Tetractys"
+  - "Pentagram (the Pythagorean symbol)"
+  - "Golden ratio"
+  - "The musical ratios"
+
+pythagorean_brotherhood:
+  founded: "~530 BCE, Croton (southern Italy)"
+  core_beliefs:
+    - "Number is the arche (first principle) of all things"
+    - "The cosmos is mathematical in structure"
+    - "Geometry is the language of the divine"
+    - "Music and number are the same thing"
+    - "The soul is immortal and mathematical"
+  motto: "All is number"
+  symbol: "The pentagram (five-pointed star) — encoded the golden ratio"
+  
+tetractys:
+  name: "Tetractys (τετρακτύς)"
+  form: "Triangular arrangement of 10 points in 4 rows (1+2+3+4)"
+  diagram: |
+    •
+    • •
+    • • •
+    • • • •
+  sacred_significance:
+    row_1: "1 — Point, the monad, undivided unity"
+    row_2: "2 — Line, duality, the dyad"
+    row_3: "3 — Triangle, the first surface"
+    row_4: "4 — Tetrahedron, the first solid"
+    total: "10 = completion, perfection (Pythagorean perfect number)"
+  musical_ratios:
+    row_1_to_2: "1:2 = octave (diapason)"
+    row_2_to_3: "2:3 = perfect fifth (diapente)"
+    row_3_to_4: "3:4 = perfect fourth (diatessaron)"
+  pythagorean_oath: "'By him who gave our soul the Tetractys'"
+
+plato_geometry:
+  timaeus_cosmogony:
+    description: "Plato's geometric creation myth"
+    demiurge: "The divine craftsman who orders the cosmos using geometry"
+    
+    four_elements_as_solids:
+      fire: { solid: tetrahedron, reason: "Sharpest, most mobile — like fire" }
+      earth: { solid: cube, reason: "Most stable, fills space — like earth" }
+      air: { solid: octahedron, reason: "Held between fingers, spins freely" }
+      water: { solid: icosahedron, reason: "Most sphere-like, flows easily" }
+      cosmos: { solid: dodecahedron, reason: "'God used it for the whole'" }
+    
+    world_soul_geometry:
+      description: "The demiurge constructs the World Soul from mathematical ratios"
+      ratios: "1, 2, 3, 4, 9, 8, 27 (powers of 2 and 3)"
+      musical_intervals: "These ratios generate the musical scale"
+      cosmic_circles: "Two circles at an angle — the equator and ecliptic"
+
+music_of_the_spheres:
+  name: "Musica Universalis / Harmony of the Spheres"
+  concept: "Planets move at speeds proportional to musical intervals — the cosmos literally sings"
+  
+  celestial_ratios:
+    moon: "1 (base)"
+    sun: "2 (octave from moon)"
+    venus: "3/2 (fifth)"
+    mercury: "4/3 (fourth)"
+    mars: "2 (octave)"
+    jupiter: "3 (octave + fifth)"
+    saturn: "4 (double octave)"
+  
+  kepler_connection: >
+    Johannes Kepler (Harmonices Mundi, 1619) discovered that planetary orbital 
+    velocities at perihelion and aphelion produce musical intervals.
+    Saturn's range: minor third. Jupiter: major third. Mars: fifth. Earth and Venus: 
+    only a semitone (Earth is sadly almost monotone). This is real mathematics —
+    not pseudoscience.
+
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# Islamic Sacred Geometry
+name: "Islamic Geometric Art"
+tradition_type: "Mathematical Art / Sacred Design"
+primary_texts:
+  - "Ikhwan al-Safa — Rasa'il (Epistles of the Brethren of Purity) (~970 CE)"
+  - "Al-Kashi — Key of Arithmetic (1427 CE)"
+  - "Al-Buzjani — On the Geometric Constructions Necessary for the Artisan"
+
+context: >
+  Islamic art prohibits figurative representation of God and humans in religious contexts.
+  This prohibition drove the development of the most sophisticated geometric decorative
+  tradition in history. Islamic geometric patterns are sacred mathematics made visible.
+
+primary_forms:
+  - "Girih (Persian: 'knot') — complex interlocking star patterns"
+  - "Arabesque — flowing plant-based geometric curves"
+  - "Muqarnas — 3D stalactite vaulting (honeycomb architecture)"
+  - "Khatam — inlaid woodwork geometric marquetry"
+  - "Zellij — geometric ceramic tilework (Morocco)"
+
+star_polygons:
+  description: "The Islamic tradition mastered star polygons unmatched anywhere in the world"
+  
+  primary_stars:
+    6_pointed: "Hexagram — Star of David / Shield of Solomon — common throughout"
+    8_pointed: "Rub el Hizb — appears on flags, most common Islamic star"
+    10_pointed: "Dominant in Seljuk and Timurid art"
+    12_pointed: "Common in Persian tilework"
+    16_pointed: "Alhambra, Topkapi — extremely sophisticated"
+    
+  forbidden_star: >
+    The 5-pointed star / pentagram is rare in Islamic art — its association with
+    magic and pre-Islamic tradition made it suspect. The 10-pointed star (double
+    pentagon) appears instead when 5-fold symmetry is needed.
+
+key_geometric_principles:
+  repeat_unit: "Typically: equilateral triangle, square, or hexagon as tiling base"
+  
+  self_similarity: >
+    Many Islamic patterns exhibit self-similarity at multiple scales —
+    centuries before the concept of fractals was formalized.
+  
+  aperiodic_tiling: >
+    The Darb-i Imam shrine (Isfahan, 1453) contains patterns that are 
+    mathematically equivalent to Penrose tilings — discovered by physicists
+    in 1970. Islamic craftsmen solved this geometric challenge 500 years early.
+    (Lu & Steinhardt, Science, 2007)
+  
+  compass_and_straightedge: >
+    All Islamic geometric art was constructed with compass and straightedge only —
+    no protractors, no trigonometry tables used by the artisans.
+    The methods are encoded in illustrated manuscripts (e.g., al-Buzjani).
+
+notable_examples:
+  alhambra:
+    location: "Granada, Spain"
+    date: "13th–14th century"
+    significance: >
+      Contains all 17 wallpaper symmetry groups — mathematically proven in 1944.
+      The craftsmen discovered them all empirically by the 14th century.
+    
+  topkapi_scroll:
+    location: "Istanbul, Turkey"
+    date: "~15th century"
+    content: "Blueprint scroll showing geometric constructions for architectural patterns"
+    significance: "Direct evidence of transmission of geometric knowledge"
+    
+  girih_tiles:
+    description: "Set of 5 polygon tiles that generate complex star patterns"
+    tiles:
+      - "Regular decagon (10-sided)"
+      - "Elongated hexagon"
+      - "Bow-tie (non-convex hexagon)"
+      - "Rhombus"
+      - "Regular pentagon"
+    property: "Any combination tiles aperiodically — Penrose-equivalent"
+
+construction_methods:
+  primary_method: "Compass and straightedge — all patterns constructible"
+  starting_point: "Usually: divide a circle into n equal parts"
+  
+  6_fold_construction:
+    - "Draw a circle"
+    - "Step the radius around the circumference 6 times — perfect hexagon"
+    - "Connect alternating points — two equilateral triangles"
+    - "Connect every other point for hexagram"
+    - "Extend lines — 12-pointed stars emerge"
+  
+  10_fold_construction:
+    - "Draw a circle"
+    - "Use φ (golden ratio) to divide into 10: φ = 2·sin(54°)"
+    - "Draw the decagon"
+    - "Connect points at intervals for star polygons {10/3}, {10/4} etc."
+
+art_direction:
+  aesthetic_tags:
+    - "Islamic geometric pattern"
+    - "arabesque sacred geometry"
+    - "girih tile pattern"
+    - "zellij ceramic mosaic"
+    - "muqarnas architecture"
+    - "star polygon Islamic"
+    - "Alhambra pattern"
+    - "Persian tile sacred"
+    - "mathematical Islamic art"
+  prompt_fragments:
+    - "Islamic geometric pattern, intricate star polygon, zellige tile, turquoise and gold, infinite repeat"
+    - "Girih pattern sacred geometry, aperiodic Islamic tiling, sapphire and lapis lazuli, mathematically precise"
+    - "Alhambra-inspired sacred geometry, all 17 wallpaper groups, maximalist repeat pattern, gold on indigo"
+    - "Muqarnas stalactite vault geometry, 3D Islamic sacred architecture, honeycomb self-similar structure"
+    - "Islamic arabesque sacred geometry meets psychedelic neon — ancient math in modern light"

@@ -1,0 +1,417 @@
+# Platonic Solids — Complete Geometric Data
+# Full vertex coordinates, face indices, edge lists, duals
+# All coordinates normalized so edge length = 1 unless noted
+
+name: "Platonic Solids Complete Data"
+version: "1.0"
+coordinate_convention: "Right-handed, Y-up, edge length = 1 unless noted"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+tetrahedron:
+  name: "Tetrahedron"
+  faces: 4
+  vertices: 4
+  edges: 6
+  face_type: "equilateral_triangle"
+  schläfli: "{3,3}"
+  element: Fire
+  dual: tetrahedron
+
+  # Edge length = 2, centered at origin
+  vertices_edge2:
+    description: "Classic form — alternating vertices of unit cube"
+    coords:
+      V0: [ 1,  1,  1]
+      V1: [ 1, -1, -1]
+      V2: [-1,  1, -1]
+      V3: [-1, -1,  1]
+    edge_length: 2.0
+    circumradius: 1.7320508  # √3
+
+  # Edge length = 1, centered at origin
+  vertices_edge1:
+    description: "Normalized — edge length 1"
+    coords:
+      V0: [ 0.0000000,  0.0000000,  1.2247449]  # top
+      V1: [ 1.1547005,  0.0000000, -0.4082483]  # front-right
+      V2: [-0.5773503,  1.0000000, -0.4082483]  # back-left
+      V3: [-0.5773503, -1.0000000, -0.4082483]  # back-right
+    edge_length: 1.0
+    circumradius: 0.6123724  # √(3/8)
+    inradius: 0.2041241      # 1/(2√6)
+    height: 0.8164966        # √(2/3)
+
+  faces_indices:
+    description: "Counter-clockwise winding (outward normals)"
+    F0: [0, 1, 2]  # bottom-ish
+    F1: [0, 2, 3]
+    F2: [0, 3, 1]
+    F3: [1, 3, 2]  # base
+
+  face_normals:
+    F0: [ 0.5773503,  0.5773503,  0.5773503]
+    F1: [-0.5773503,  0.5773503, -0.5773503]
+    F2: [-0.5773503, -0.5773503,  0.5773503]
+    F3: [ 0.5773503, -0.5773503, -0.5773503]
+
+  edge_pairs:
+    - [0,1]
+    - [0,2]
+    - [0,3]
+    - [1,2]
+    - [1,3]
+    - [2,3]
+
+  measurements:
+    dihedral_angle_deg: 70.5288
+    dihedral_angle_rad: 1.2309594
+    dihedral_exact: "arccos(1/3)"
+    solid_angle_at_vertex_str: "arccos(23/27)"
+    vertex_configuration: "3.3.3"
+    symmetry_group: "Td"
+    symmetry_order: 24
+
+  glsl_sdf: |
+    // Tetrahedron SDF (edge ≈ 1.63, centered at origin)
+    // From Inigo Quilez
+    float sdTetrahedron(vec3 p, float r) {
+      float md = max(max(-p.x-p.y-p.z, p.x+p.y-p.z),
+                     max(-p.x+p.y+p.z, p.x-p.y+p.z));
+      return (md - r) / sqrt(3.0);
+    }
+    // Usage: sdTetrahedron(p, 0.5) → tetrahedron with half-extent 0.5
+
+  p5js_draw: |
+    // p5.js WEBGL mode — tetrahedron
+    function drawTetrahedron(size) {
+      let verts = [
+        createVector(0, -size, 0),                         // top
+        createVector(-size*0.816, size*0.333, 0),          // front-left
+        createVector(size*0.408, size*0.333, size*0.707),  // back-right
+        createVector(size*0.408, size*0.333, -size*0.707)  // back-left
+      ];
+      let faces = [[0,1,2],[0,2,3],[0,3,1],[1,3,2]];
+      beginShape(TRIANGLES);
+      for (let f of faces) {
+        for (let i of f) vertex(verts[i].x, verts[i].y, verts[i].z);
+      }
+      endShape();
+    }
+
+# ═══════════════════════════════════════════════════════════════════════════════
+cube:
+  name: "Cube / Hexahedron"
+  faces: 6
+  vertices: 8
+  edges: 12
+  face_type: "square"
+  schläfli: "{4,3}"
+  element: Earth
+  dual: octahedron
+
+  vertices_edge1:
+    description: "Unit cube, half-edge = 0.5, centered at origin"
+    coords:
+      V0: [-0.5, -0.5, -0.5]
+      V1: [ 0.5, -0.5, -0.5]
+      V2: [ 0.5,  0.5, -0.5]
+      V3: [-0.5,  0.5, -0.5]
+      V4: [-0.5, -0.5,  0.5]
+      V5: [ 0.5, -0.5,  0.5]
+      V6: [ 0.5,  0.5,  0.5]
+      V7: [-0.5,  0.5,  0.5]
+    edge_length: 1.0
+    circumradius: 0.8660254  # √3/2
+    inradius: 0.5
+    midradius: 0.7071068     # √2/2
+
+  faces_indices:
+    description: "CCW winding viewed from outside"
+    bottom: [0, 3, 2, 1]  # -Y
+    top:    [4, 5, 6, 7]  # +Y
+    front:  [0, 1, 5, 4]  # -Z
+    back:   [2, 3, 7, 6]  # +Z
+    left:   [0, 4, 7, 3]  # -X
+    right:  [1, 2, 6, 5]  # +X
+
+  edge_pairs:
+    - [0,1],[1,2],[2,3],[3,0]  # bottom ring
+    - [4,5],[5,6],[6,7],[7,4]  # top ring
+    - [0,4],[1,5],[2,6],[3,7]  # verticals
+
+  measurements:
+    dihedral_angle_deg: 90.0
+    vertex_configuration: "4.4.4"
+    symmetry_group: "Oh"
+    symmetry_order: 48
+
+  space_filling: true
+  note: "Only Platonic solid that tiles 3D space without gaps"
+
+  embedded_tetrahedra:
+    description: "Two regular tetrahedra inscribe in a cube using alternating vertices"
+    tetra1_vertices: [0, 2, 5, 7]  # alternating set A
+    tetra2_vertices: [1, 3, 4, 6]  # alternating set B
+
+  glsl_sdf: |
+    // Box/Cube SDF
+    float sdBox(vec3 p, vec3 b) {
+      vec3 q = abs(p) - b;
+      return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
+    }
+    // Usage: sdBox(p, vec3(0.5)) → unit cube
+
+# ═══════════════════════════════════════════════════════════════════════════════
+octahedron:
+  name: "Octahedron"
+  faces: 8
+  vertices: 6
+  edges: 12
+  face_type: "equilateral_triangle"
+  schläfli: "{3,4}"
+  element: Air
+  dual: cube
+
+  vertices_edge1:
+    description: "Regular octahedron, edge length 1"
+    coords:
+      V0: [ 0.7071068,  0.0,  0.0]   # +X
+      V1: [-0.7071068,  0.0,  0.0]   # -X
+      V2: [ 0.0,  0.7071068,  0.0]   # +Y
+      V3: [ 0.0, -0.7071068,  0.0]   # -Y
+      V4: [ 0.0,  0.0,  0.7071068]   # +Z
+      V5: [ 0.0,  0.0, -0.7071068]   # -Z
+    edge_length: 1.0
+    circumradius: 0.7071068   # 1/√2
+    inradius: 0.4082483       # 1/√6
+    midradius: 0.5            # exactly 1/2
+
+  faces_indices:
+    F0: [0, 4, 2]
+    F1: [0, 2, 5]
+    F2: [0, 5, 3]
+    F3: [0, 3, 4]
+    F4: [1, 2, 4]
+    F5: [1, 5, 2]
+    F6: [1, 3, 5]
+    F7: [1, 4, 3]
+
+  measurements:
+    dihedral_angle_deg: 109.4712
+    dihedral_exact: "arccos(-1/3)"
+    vertex_configuration: "3.3.3.3"
+    symmetry_group: "Oh"
+    symmetry_order: 48
+    note: "Same symmetry group as cube (they are duals)"
+
+  dual_of_cube_note: >
+    The octahedron's 6 vertices correspond to the 6 face centers of the cube.
+    Edge length of dual: if cube has edge a, dual octahedron has edge a/√2.
+
+  glsl_sdf: |
+    // Octahedron SDF (from Inigo Quilez)
+    float sdOctahedron(vec3 p, float s) {
+      p = abs(p);
+      return (p.x + p.y + p.z - s) * 0.57735027; // * (1/√3)
+    }
+    // Usage: sdOctahedron(p, 0.5)
+
+# ═══════════════════════════════════════════════════════════════════════════════
+dodecahedron:
+  name: "Dodecahedron"
+  faces: 12
+  vertices: 20
+  edges: 30
+  face_type: "regular_pentagon"
+  schläfli: "{5,3}"
+  element: "Aether / Cosmos"
+  dual: icosahedron
+
+  phi: 1.6180339887498948482
+
+  vertices_edge1:
+    description: "Edge length ≈ 1.0 (exact depends on φ). Three families of vertices."
+    family_A:
+      description: "8 vertices at cube corners (±1, ±1, ±1) scaled"
+      scale: 0.6070619982
+      pattern: "All sign combinations of (±s, ±s, ±s)"
+    family_B:
+      description: "12 vertices in 3 axis-aligned golden rectangles"
+      scale_long: 0.9822388  # φ × short
+      scale_short: 0.6070619982
+      pattern: "(0, ±s, ±φs) and cyclic permutations"
+    explicit_coords:
+      # Dodecahedron with edge length ≈ 1, centered at origin
+      # s = 1/(√3 × φ) ≈ 0.3568
+      V00: [ 0.6070620,  0.6070620,  0.6070620]
+      V01: [ 0.6070620,  0.6070620, -0.6070620]
+      V02: [ 0.6070620, -0.6070620,  0.6070620]
+      V03: [ 0.6070620, -0.6070620, -0.6070620]
+      V04: [-0.6070620,  0.6070620,  0.6070620]
+      V05: [-0.6070620,  0.6070620, -0.6070620]
+      V06: [-0.6070620, -0.6070620,  0.6070620]
+      V07: [-0.6070620, -0.6070620, -0.6070620]
+      V08: [ 0.0000000,  0.3717480,  0.9822388]
+      V09: [ 0.0000000,  0.3717480, -0.9822388]
+      V10: [ 0.0000000, -0.3717480,  0.9822388]
+      V11: [ 0.0000000, -0.3717480, -0.9822388]
+      V12: [ 0.9822388,  0.0000000,  0.3717480]
+      V13: [ 0.9822388,  0.0000000, -0.3717480]
+      V14: [-0.9822388,  0.0000000,  0.3717480]
+      V15: [-0.9822388,  0.0000000, -0.3717480]
+      V16: [ 0.3717480,  0.9822388,  0.0000000]
+      V17: [ 0.3717480, -0.9822388,  0.0000000]
+      V18: [-0.3717480,  0.9822388,  0.0000000]
+      V19: [-0.3717480, -0.9822388,  0.0000000]
+    circumradius: 1.4012585
+    edge_length: 1.0
+
+  phi_embedding: >
+    Each pentagonal face has diagonals exactly φ × edge length.
+    The 12 vertices of the dual (icosahedron) sit at the 12 face centers.
+    The 3 golden rectangles that generate the icosahedron's vertices
+    are directly related to the dodecahedron's structure.
+
+  measurements:
+    dihedral_angle_deg: 116.5651
+    dihedral_exact: "arctan(2)"
+    vertex_configuration: "5.5.5"
+    symmetry_group: "Ih"
+    symmetry_order: 120
+
+  cosmic_note: >
+    Plato (Timaeus): the dodecahedron represents the cosmos — 
+    "God used it for the whole, embroidering it with figures."
+    12 pentagonal faces → 12 signs of zodiac interpretation.
+    The 120-element symmetry group (Ih) is the largest of any Platonic solid.
+
+  glsl_sdf: |
+    // Dodecahedron SDF — uses symmetry folding
+    // Based on Inigo Quilez / Mathematical Orchard
+    #define PHI 1.6180339887
+    float sdDodecahedron(vec3 p, float r) {
+      // Fold into fundamental domain using the 5-fold axes
+      p = abs(p);
+      // GRP: plane normals of dodecahedron
+      vec3 n1 = normalize(vec3(PHI, 1.0, 0.0));
+      vec3 n2 = normalize(vec3(0.0, PHI, 1.0));
+      vec3 n3 = normalize(vec3(1.0, 0.0, PHI));
+      float d = dot(p, n1);
+      d = max(d, dot(p, n2));
+      d = max(d, dot(p, n3));
+      return d - r;
+    }
+
+# ═══════════════════════════════════════════════════════════════════════════════
+icosahedron:
+  name: "Icosahedron"
+  faces: 20
+  vertices: 12
+  edges: 30
+  face_type: "equilateral_triangle"
+  schläfli: "{3,5}"
+  element: Water
+  dual: dodecahedron
+
+  phi: 1.6180339887498948482
+
+  vertices_edge1:
+    description: >
+      3 mutually perpendicular golden rectangles.
+      Each rectangle: dimensions (0, ±1, ±φ) and cyclic permutations.
+      Edge length = 2, circumradius = √(1 + φ²) = √(2+φ) ≈ 1.902.
+      To normalize to edge 1: divide all by 2.
+    coords_edge2:
+      description: "Classic golden rectangle form, edge = 2"
+      V00: [ 0.0,  1.0,  1.6180340]
+      V01: [ 0.0,  1.0, -1.6180340]
+      V02: [ 0.0, -1.0,  1.6180340]
+      V03: [ 0.0, -1.0, -1.6180340]
+      V04: [ 1.6180340,  0.0,  1.0]
+      V05: [ 1.6180340,  0.0, -1.0]
+      V06: [-1.6180340,  0.0,  1.0]
+      V07: [-1.6180340,  0.0, -1.0]
+      V08: [ 1.0,  1.6180340,  0.0]
+      V09: [ 1.0, -1.6180340,  0.0]
+      V10: [-1.0,  1.6180340,  0.0]
+      V11: [-1.0, -1.6180340,  0.0]
+      edge_length: 2.0
+      circumradius: 1.9021130  # sqrt(1 + phi^2)
+
+    coords_edge1:
+      description: "Normalized to edge length 1"
+      scale_factor: 0.5
+      V00: [ 0.0,  0.5,  0.8090170]
+      V01: [ 0.0,  0.5, -0.8090170]
+      V02: [ 0.0, -0.5,  0.8090170]
+      V03: [ 0.0, -0.5, -0.8090170]
+      V04: [ 0.8090170,  0.0,  0.5]
+      V05: [ 0.8090170,  0.0, -0.5]
+      V06: [-0.8090170,  0.0,  0.5]
+      V07: [-0.8090170,  0.0, -0.5]
+      V08: [ 0.5,  0.8090170,  0.0]
+      V09: [ 0.5, -0.8090170,  0.0]
+      V10: [-0.5,  0.8090170,  0.0]
+      V11: [-0.5, -0.8090170,  0.0]
+      edge_length: 1.0
+      circumradius: 0.9510565
+      inradius: 0.7557613
+
+  faces_indices:
+    description: "20 triangular faces — CCW from outside"
+    F00: [ 0, 2,  4]
+    F01: [ 0, 4,  8]
+    F02: [ 0, 8, 10]
+    F03: [ 0,10,  6]
+    F04: [ 0, 6,  2]
+    F05: [ 1, 5,  3]
+    F06: [ 1, 3,  7]
+    F07: [ 1, 7, 10]
+    F08: [ 1,10,  8]
+    F09: [ 1, 8,  5]
+    F10: [ 2, 6, 11]
+    F11: [ 2,11,  9]
+    F12: [ 2, 9,  4]
+    F13: [ 3, 5,  9]
+    F14: [ 3, 9, 11]
+    F15: [ 3,11,  7]
+    F16: [ 4, 9,  5]
+    F17: [ 5, 8,  4]
+    F18: [ 6,10,  7]
+    F19: [ 7,11,  6]
+
+  measurements:
+    dihedral_angle_deg: 138.1897
+    dihedral_exact: "arctan(2)"  # same as dodecahedron — they are duals
+    vertex_configuration: "3.3.3.3.3"
+    symmetry_group: "Ih"
+    symmetry_order: 120
+
+  phi_relationship: >
+    Vertices live on 3 mutually perpendicular golden rectangles.
+    This is the most direct encoding of φ in 3D Platonic geometry.
+    The 12 vertices project to a regular hexagon + 6 "poles" when viewed 
+    from certain angles, making it maximally sphere-like.
+
+  virus_note: >
+    Many virus capsids (including COVID-19 spike protein arrangement)
+    have icosahedral symmetry — it maximizes enclosed volume for a given
+    number of identical protein subunits. Nature found the math.
+
+  glsl_sdf: |
+    // Icosahedron SDF — using GRP symmetry folding
+    #define PHI 1.6180339887
+    float sdIcosahedron(vec3 p, float r) {
+      p = abs(p);
+      // Fold using the icosahedron's face normals
+      // Three golden rectangle planes
+      vec3 n = normalize(vec3(PHI, 1.0, 0.0));
+      float d = dot(p, n);
+      n = normalize(vec3(0.0, PHI, 1.0));
+      d = max(d, dot(p, n));
+      n = normalize(vec3(1.0, 0.0, PHI));
+      d = max(d, dot(p, n));
+      // Also fold with coordinate planes
+      d = max(d, max(p.x, max(p.y, p.z)));
+      return d - r;
+    }

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Metatron's Cube — Sacred Geometry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; display: flex; flex-direction: column; align-items: center; font-family: 'Courier New', monospace; color: #FFAA00; }
+    #controls { display: flex; gap: 10px; padding: 10px; flex-wrap: wrap; justify-content: center; }
+    button, select { background: #0A0A00; border: 1px solid #FFAA00; color: #FFAA00; padding: 5px 12px; cursor: pointer; font-family: monospace; font-size: 11px; letter-spacing: 0.05em; }
+    button:hover, select:hover { background: #FFAA0022; }
+    label { font-size: 11px; display: flex; align-items: center; gap: 6px; }
+    input[type=range] { width: 70px; accent-color: #FFAA00; }
+    #info { font-size: 10px; opacity: 0.4; padding: 4px; }
+  </style>
+</head>
+<body>
+<div id="controls">
+  <label>Speed: <input type="range" id="speed" min="0" max="3" value="0.5" step="0.1"><span id="spd-v">0.5</span></label>
+  <select id="colorMode">
+    <option value="solid">SOLID (by solid)</option>
+    <option value="hue">HUE ANGLE</option>
+    <option value="void">VOID CYAN</option>
+    <option value="gold">SACRED GOLD</option>
+  </select>
+  <button id="toggleCircles">CIRCLES ON</button>
+  <button id="toggleAnim">⏸ PAUSE</button>
+  <button id="drawAll">DRAW ALL</button>
+  <button id="reset">RESET</button>
+</div>
+
+<script>
+new p5(function(p) {
+  const PHI = 1.6180339887;
+  const SQRT3 = Math.sqrt(3);
+  let r, centers, connections;
+  let t = 0, speed = 0.5;
+  let animating = true, showCircles = true;
+  let drawProgress = 0, autoDrawing = true;
+  let colorMode = 'solid';
+  let bgAlpha = 12;
+
+  // Platonic solid color map by connection length
+  const SOLID_COLORS = {
+    tetrahedron:  [255, 68,  68],
+    hexahedron:   [255, 183, 0],
+    octahedron:   [0,   255, 204],
+    dodecahedron: [170, 68,  255],
+    icosahedron:  [0,   136, 255],
+  };
+
+  function solidForLength(len, r) {
+    const ratio = len / (2 * r);
+    if (ratio < 1.5) return 'tetrahedron';
+    if (ratio < 2.5) return 'hexahedron';
+    if (ratio < 3.5) return 'octahedron';
+    if (ratio < 4.5) return 'dodecahedron';
+    return 'icosahedron';
+  }
+
+  function computeCenters(r) {
+    const s = 2 * r;
+    const pts = [p.createVector(0, 0)];
+    for (let i = 0; i < 6; i++) {
+      const a = i * Math.PI / 3;
+      pts.push(p.createVector(s * Math.cos(a), s * Math.sin(a)));
+    }
+    for (let i = 0; i < 6; i++) {
+      const a = i * Math.PI / 3 + Math.PI / 6;
+      pts.push(p.createVector(4 * r * Math.cos(a), 4 * r * Math.sin(a)));
+    }
+    return pts;
+  }
+
+  function computeConnections(centers) {
+    const conns = [];
+    for (let i = 0; i < centers.length; i++)
+      for (let j = i + 1; j < centers.length; j++)
+        conns.push({ a: centers[i], b: centers[j], len: p5.Vector.dist(centers[i], centers[j]) });
+    return conns;
+  }
+
+  p.setup = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    const cv = p.createCanvas(sz, sz);
+    cv.parent('sketch-container');
+    p.colorMode(p.RGB, 255, 255, 255, 255);
+
+    r = sz * 0.085;
+    centers = computeCenters(r);
+    connections = computeConnections(centers);
+
+    // Controls
+    const speedSlider = document.getElementById('speed');
+    speedSlider.addEventListener('input', () => {
+      speed = parseFloat(speedSlider.value);
+      document.getElementById('spd-v').textContent = speed.toFixed(1);
+    });
+    document.getElementById('colorMode').addEventListener('change', e => colorMode = e.target.value);
+    document.getElementById('toggleCircles').addEventListener('click', function() {
+      showCircles = !showCircles;
+      this.textContent = showCircles ? 'CIRCLES ON' : 'CIRCLES OFF';
+    });
+    document.getElementById('toggleAnim').addEventListener('click', function() {
+      animating = !animating;
+      this.textContent = animating ? '⏸ PAUSE' : '▶ PLAY';
+    });
+    document.getElementById('drawAll').addEventListener('click', () => { drawProgress = 1; autoDrawing = false; });
+    document.getElementById('reset').addEventListener('click', () => { drawProgress = 0; autoDrawing = true; t = 0; });
+  };
+
+  p.draw = function() {
+    p.background(0, 0, 0, bgAlpha);
+    p.translate(p.width / 2, p.height / 2);
+
+    if (animating) t += 0.008 * speed;
+    if (autoDrawing && drawProgress < 1) drawProgress = Math.min(1, drawProgress + 0.003 * (speed + 0.1));
+
+    const totalConns = connections.length; // 78
+
+    // ── Lines ────────────────────────────────────────────────────
+    p.strokeWeight(0.8);
+    connections.forEach((conn, idx) => {
+      const progress = idx / totalConns;
+      if (progress > drawProgress) return;
+
+      // Fade in as newly drawn
+      const fade = Math.min(1, (drawProgress - progress) / 0.05);
+      const alpha = Math.round(fade * 170);
+
+      let r_, g_, b_;
+      if (colorMode === 'solid') {
+        const solid = solidForLength(conn.len, r);
+        [r_, g_, b_] = SOLID_COLORS[solid];
+      } else if (colorMode === 'hue') {
+        const mid = p5.Vector.add(conn.a, conn.b).mult(0.5);
+        const angle = Math.atan2(mid.y, mid.x);
+        const hue = (angle / Math.PI / 2 + 0.5 + t * 0.05) % 1;
+        const c = p.color(`hsl(${Math.round(hue * 360)},90%,65%)`);
+        r_ = p.red(c); g_ = p.green(c); b_ = p.blue(c);
+      } else if (colorMode === 'void') {
+        r_ = 0; g_ = 220; b_ = 200;
+      } else {
+        // Gold — color by line length (short=deep gold, long=pale)
+        const ratio = conn.len / (2 * r);
+        r_ = 255; g_ = Math.round(p.map(ratio, 0, 7, 120, 220)); b_ = 0;
+      }
+
+      // Glow: draw twice — thin bright + slightly thicker dim
+      p.stroke(r_, g_, b_, alpha * 0.4);
+      p.strokeWeight(2.5);
+      p.line(conn.a.x, conn.a.y, conn.b.x, conn.b.y);
+      p.stroke(r_, g_, b_, alpha);
+      p.strokeWeight(0.7);
+      p.line(conn.a.x, conn.a.y, conn.b.x, conn.b.y);
+    });
+
+    // ── Circles ──────────────────────────────────────────────────
+    if (showCircles) {
+      p.noFill();
+      centers.forEach((c, i) => {
+        const dist = c.mag();
+        const angle = Math.atan2(c.y, c.x);
+        const hue = ((angle / Math.PI / 2 + 0.5) + t * 0.06) % 1;
+        const pulse = r + Math.sin(t * 2 + dist * 0.05) * r * 0.03;
+        p.stroke(p.color(`hsl(${Math.round(hue * 360)},70%,55%)`));
+        p.strokeWeight(0.6);
+        p.circle(c.x, c.y, pulse * 2);
+      });
+    }
+
+    // ── Center dots ───────────────────────────────────────────────
+    p.noStroke();
+    centers.forEach((c, i) => {
+      const bright = 0.5 + 0.5 * Math.sin(t * 3 + i);
+      p.fill(255, 255, Math.round(bright * 200), 230);
+      p.circle(c.x, c.y, 5);
+    });
+
+    // ── Legend ────────────────────────────────────────────────────
+    if (colorMode === 'solid' && drawProgress > 0.1) {
+      p.textSize(8);
+      p.textAlign(p.LEFT);
+      let ly = p.height / 2 - 60;
+      Object.entries(SOLID_COLORS).forEach(([name, [r_, g_, b_]]) => {
+        p.fill(r_, g_, b_, 180);
+        p.noStroke();
+        p.rect(-p.width/2 + 10, ly, 10, 8);
+        p.fill(r_, g_, b_, 200);
+        p.text(name.toUpperCase(), -p.width/2 + 24, ly + 8);
+        ly += 14;
+      });
+    }
+
+    // ── Progress indicator ────────────────────────────────────────
+    if (drawProgress < 1) {
+      p.noFill();
+      p.stroke(255, 170, 0, 80);
+      p.strokeWeight(1);
+      p.arc(0, 0, r * 9.5, r * 9.5, -Math.PI/2, -Math.PI/2 + drawProgress * Math.PI * 2);
+      p.fill(255, 170, 0, 120);
+      p.noStroke();
+      p.textSize(9);
+      p.textAlign(p.CENTER);
+      p.text(`${Math.round(drawProgress * 78)} / 78`, 0, r * 5.2);
+    }
+  };
+
+  p.windowResized = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    p.resizeCanvas(sz, sz);
+    r = sz * 0.085;
+    centers = computeCenters(r);
+    connections = computeConnections(centers);
+  };
+});
+
+const container = document.createElement('div');
+container.id = 'sketch-container';
+document.body.insertBefore(container, document.querySelector('#controls'));
+document.body.appendChild(document.getElementById('controls'));
+</script>
+
+<div id="info">METATRON'S CUBE — 13 circles — 78 connections — all 5 Platonic Solids encoded</div>
+</body>
+</html>

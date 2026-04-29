@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flower of Life — Sacred Geometry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Courier New', monospace;
+      color: #00FFCC;
+    }
+    #controls {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button, select {
+      background: #0A0A1A;
+      border: 1px solid #00FFCC;
+      color: #00FFCC;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+    button:hover, select:hover { background: #00FFCC22; }
+    label { font-size: 11px; display: flex; align-items: center; gap: 6px; }
+    input[type=range] { width: 80px; accent-color: #00FFCC; }
+    #info {
+      font-size: 10px;
+      opacity: 0.5;
+      padding: 4px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label>Rings: <input type="range" id="rings" min="1" max="4" value="2" step="1"> <span id="rings-val">2</span></label>
+    <label>Radius: <input type="range" id="radius" min="20" max="100" value="50" step="2"> <span id="rad-val">50</span></label>
+    <label>Speed: <input type="range" id="speed" min="0" max="5" value="1" step="0.1"> <span id="spd-val">1</span></label>
+    <select id="colorMode">
+      <option value="plasma">PLASMA</option>
+      <option value="void">VOID</option>
+      <option value="solar">SOLAR</option>
+      <option value="mono">MONO</option>
+    </select>
+    <button id="toggleAnim">⏸ PAUSE</button>
+    <button id="toggleBound">BOUNDARY ON</button>
+  </div>
+
+  <script>
+  let sketch = function(p) {
+    let r = 50;
+    let rings = 2;
+    let speed = 1;
+    let t = 0;
+    let animating = true;
+    let showBoundary = false;
+    let colorMode = 'plasma';
+    let centers = [];
+
+    // Compute all circle centers for n rings of Flower of Life
+    function computeCenters(r, rings) {
+      let pts = [];
+      // Hexagonal grid offsets
+      let ax = [1, 0.5, -0.5, -1, -0.5, 0.5];
+      let ay = [0, p.sqrt(3)/2, p.sqrt(3)/2, 0, -p.sqrt(3)/2, -p.sqrt(3)/2];
+      
+      pts.push(p.createVector(0, 0));
+      
+      // Generate all points in the hex grid up to 'rings' rings
+      let seen = new Set();
+      let queue = [p.createVector(0, 0)];
+      let visited = new Set(['0,0']);
+      
+      for (let ring = 0; ring < rings; ring++) {
+        let nextQueue = [];
+        for (let center of queue) {
+          for (let d = 0; d < 6; d++) {
+            let nx = p.round(center.x + ax[d] * r * 2);
+            let ny = p.round(center.y + ay[d] * r * 2);
+            let key = nx + ',' + ny;
+            // Only add if within distance rings * r * 2 from origin
+            let dist = p.sqrt(nx * nx + ny * ny);
+            if (!visited.has(key) && dist <= rings * r * 2 + 1) {
+              visited.add(key);
+              let pt = p.createVector(nx, ny);
+              pts.push(pt);
+              nextQueue.push(pt);
+            }
+          }
+        }
+        queue = nextQueue;
+      }
+      return pts;
+    }
+
+    function getColor(cx, cy, t, mode) {
+      let dist = p.sqrt(cx * cx + cy * cy);
+      let angle = p.atan2(cy, cx);
+      
+      switch(mode) {
+        case 'plasma': {
+          let h = (p.degrees(angle) + t * 30 + dist * 0.5) % 360;
+          return p.color(p.hue(p.color(`hsl(${h},100%,60%)`)), 
+                         p.saturation(p.color(`hsl(${h},100%,60%)`)), 
+                         p.brightness(p.color(`hsl(${h},100%,60%)`)));
+        }
+        case 'void': {
+          let h2 = (200 + t * 20 + dist * 0.3) % 360;
+          return p.color(`hsl(${h2},100%,60%)`);
+        }
+        case 'solar': {
+          let h3 = (30 + dist * 1.5 + t * 15) % 60 + 10;
+          return p.color(`hsl(${h3},100%,60%)`);
+        }
+        case 'mono': {
+          return p.color(`hsl(180,80%,60%)`);
+        }
+      }
+      return p.color(255);
+    }
+
+    p.setup = function() {
+      let size = p.min(p.windowWidth, p.windowHeight, 700);
+      let canvas = p.createCanvas(size, size);
+      canvas.parent('sketch-container');
+      p.colorMode(p.HSB, 360, 100, 100, 100);
+      p.noFill();
+      centers = computeCenters(r, rings);
+
+      // Control wiring
+      let ringsSlider = document.getElementById('rings');
+      let radiusSlider = document.getElementById('radius');
+      let speedSlider = document.getElementById('speed');
+      let colorSel = document.getElementById('colorMode');
+      let toggleBtn = document.getElementById('toggleAnim');
+      let boundBtn = document.getElementById('toggleBound');
+
+      ringsSlider.addEventListener('input', () => {
+        rings = parseInt(ringsSlider.value);
+        document.getElementById('rings-val').textContent = rings;
+        centers = computeCenters(r, rings);
+      });
+      radiusSlider.addEventListener('input', () => {
+        r = parseInt(radiusSlider.value);
+        document.getElementById('rad-val').textContent = r;
+        centers = computeCenters(r, rings);
+      });
+      speedSlider.addEventListener('input', () => {
+        speed = parseFloat(speedSlider.value);
+        document.getElementById('spd-val').textContent = speed.toFixed(1);
+      });
+      colorSel.addEventListener('change', () => colorMode = colorSel.value);
+      toggleBtn.addEventListener('click', () => {
+        animating = !animating;
+        toggleBtn.textContent = animating ? '⏸ PAUSE' : '▶ PLAY';
+      });
+      boundBtn.addEventListener('click', () => {
+        showBoundary = !showBoundary;
+        boundBtn.textContent = showBoundary ? 'BOUNDARY OFF' : 'BOUNDARY ON';
+      });
+    };
+
+    p.draw = function() {
+      p.background(0, 0, 0, 15);
+      p.translate(p.width / 2, p.height / 2);
+
+      if (animating) t += 0.01 * speed;
+
+      // Draw each circle
+      for (let i = 0; i < centers.length; i++) {
+        let cx = centers[i].x;
+        let cy = centers[i].y;
+        let dist = p.sqrt(cx * cx + cy * cy);
+
+        // Breathing animation: modulate radius slightly
+        let pulse = r + p.sin(t * 2 + dist * 0.05) * r * 0.04;
+
+        // Per-circle color based on position + time
+        let angle = p.atan2(cy, cx);
+        let h = (p.degrees(angle) + t * 30 * speed + dist * 0.8) % 360;
+        if (h < 0) h += 360;
+
+        let brightness = 70 + p.sin(t + dist * 0.1) * 20;
+        let alpha = 60 + p.sin(t * 0.5 + i * 0.3) * 20;
+
+        switch(colorMode) {
+          case 'plasma': p.stroke(h, 80, brightness, alpha); break;
+          case 'void':   p.stroke((h + 180) % 360, 90, brightness, alpha); break;
+          case 'solar':  p.stroke(p.map(dist, 0, rings * r * 2, 50, 10), 90, brightness, alpha); break;
+          case 'mono':   p.stroke(180, 70, 70, alpha); break;
+        }
+
+        p.strokeWeight(1);
+        p.circle(cx, cy, pulse * 2);
+
+        // Draw center dot
+        p.strokeWeight(2);
+        p.point(cx, cy);
+      }
+
+      // Optional bounding circle
+      if (showBoundary) {
+        let boundR = rings * r * 2;
+        p.stroke(0, 0, 100, 30);
+        p.strokeWeight(0.5);
+        p.circle(0, 0, boundR * 2 + r * 2);
+      }
+    };
+
+    p.windowResized = function() {
+      let size = p.min(p.windowWidth, p.windowHeight, 700);
+      p.resizeCanvas(size, size);
+    };
+  };
+
+  // Mount
+  let container = document.createElement('div');
+  container.id = 'sketch-container';
+  document.body.insertBefore(container, document.querySelector('#info') || document.body.firstChild);
+  
+  // Move controls after canvas
+  let controls = document.getElementById('controls');
+  document.body.appendChild(controls);
+
+  new p5(sketch);
+  </script>
+
+  <div id="info">
+    FLOWER OF LIFE — sacred_geometry / sketches/p5js | φ = 1.6180... | √3 = 1.7320...
+  </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+# Flower of Life
+# The foundational matrix — 19 overlapping circles arranged in hexagonal symmetry
+
+name: "Flower of Life"
+aliases:
+  - "Fleur de vie"
+  - "Flos vitae"
+  - "Hexagonal circle matrix"
+category: foundational
+subcategory: circle_matrix
+complexity: intermediate
+
+construction:
+  method: compass_and_straightedge
+  base_unit: "radius r of each circle"
+  total_circles: 19
+  visible_petal_count: 72
+  grid_type: hexagonal
+  steps:
+    - step: 1
+      action: "Draw a circle of radius r. Mark center O."
+    - step: 2
+      action: "Place compass at any point on the circumference. Draw a second circle of same radius r."
+    - step: 3
+      action: "This creates the Vesica Piscis — the seed."
+    - step: 4
+      action: "At each of the 2 intersection points, draw another circle of radius r."
+    - step: 5
+      action: "Continue: at each new intersection point on the outermost ring, draw another circle."
+    - step: 6
+      action: "After 7 circles: you have the Seed of Life."
+    - step: 7
+      action: "Add 12 more circles in the next hexagonal ring = 19 total = Flower of Life."
+    - step: 8
+      action: "Optionally bound with a larger circle tangent to the outermost ring."
+
+  key_measurements:
+    center_to_center_distance: "r (each circle center is exactly 1 radius from its neighbors)"
+    outer_diameter: "5r (center to outermost point)"
+    inner_hexagon_side: "r"
+    bounding_circle_radius: "3r (contains all 19 circles)"
+
+  embedded_forms:
+    - "Seed of Life (7 circles — the inner 7)"
+    - "Egg of Life (7 circles in 3D arrangement)"
+    - "Fruit of Life (13 circles at every other intersection)"
+    - "Metatron's Cube (drawn from Fruit of Life)"
+    - "All 5 Platonic Solids (via Metatron's Cube)"
+    - "Star of David / Hexagram"
+    - "Vesica Piscis (any 2 adjacent circles)"
+    - "√3 ratio (vesica proportions)"
+
+mathematics:
+  core_constants: ["√3", "π", "φ (in pentagons within)"]
+  
+  circle_geometry:
+    overlap_area_two_circles: "r²(2π/3 - √3/2) × 2"  # Vesica Piscis area
+    vesica_height_to_width_ratio: "√3"
+    angle_between_circle_centers: 60  # degrees
+    rotational_symmetry: 6  # 6-fold
+    
+  hexagonal_properties:
+    lattice_type: "close-packed hexagonal"
+    packing_efficiency: 0.9069  # fraction of plane covered
+    coordination_number: 6  # each circle touches exactly 6 others (in inner ring)
+    
+  formulas:
+    nth_ring_circle_count: "6n (for n ≥ 1), center = 1"
+    total_circles_n_rings: "3n² + 3n + 1"
+    ring_1: 7   # center + 6
+    ring_2: 19  # center + 6 + 12
+    ring_3: 37  # center + 6 + 12 + 18
+    
+  properties:
+    - "Self-similar: each 7-circle Seed of Life is a scaled version"
+    - "Tiling: tiles the plane with no gaps when extended"
+    - "All intersections are at 60° angles"
+    - "Contains implicit √3 in every vesica"
+    - "Contains implicit √3 in the hexagonal lattice"
+
+historical:
+  oldest_known_example:
+    location: "Osirian Temple at Abydos, Egypt"
+    date: "~6th century BCE (some claim much older)"
+    medium: "Granite, possibly burned/etched rather than carved"
+    notes: "Controversial — some scholars dispute the dating"
+  other_locations:
+    - "Louvre Abu Dhabi collection"
+    - "Assyrian artifacts"
+    - "Leonardo da Vinci's notebooks"
+    - "Ephesus, Turkey (ancient coins)"
+    - "Jewish synagogues, Israel"
+    - "China (various dynasties)"
+  modern_popularization:
+    source: "Drunvalo Melchizedek — 'The Ancient Secret of the Flower of Life' (1999)"
+    note: "Much of the modern esoteric framing originates here, not antiquity"
+
+symbolism:
+  traditions:
+    esoteric:
+      - "Map of all existence: 19 circles = first 19 days of creation"
+      - "Blueprint of the universe — all forms derivable from it"
+      - "Symbol of the Akashic Records"
+    kabbalah:
+      - "Contains the Tree of Life geometry"
+    christian:
+      - "Symbol of the Holy Trinity (via triangular sub-patterns)"
+    pythagorean:
+      - "Tetractys embedded in hexagonal structure"
+    buddhist:
+      - "Appears in Theravada Buddhist temples"
+      - "Related to the Dharma wheel proportions"
+    taoist:
+      - "Hexagonal symmetry mirrors the ba gua / I Ching"
+  themes:
+    - Creation
+    - Unity of all forms
+    - Interconnection
+    - The matrix of spacetime
+    - Divine geometry as language
+  numerology:
+    7: "Seed of Life — days of creation, musical notes, chakras, colors of spectrum"
+    12: "Outer ring circles — months, zodiac signs, apostles, tribes"
+    19: "Total circles — prime number, Sun number (Baha'i)"
+
+color_palettes:
+  psychedelic:
+    - name: "Ultraviolet Bloom"
+      hex: ["#FF00FF", "#9400D3", "#4B0082", "#7FFF00", "#00FFFF", "#FF1493"]
+    - name: "Bioluminescent Grid"
+      hex: ["#00FF7F", "#00FFFF", "#0080FF", "#7000FF", "#FF007F", "#FFFF00"]
+    - name: "Solar Plasma"
+      hex: ["#FF4500", "#FF8C00", "#FFD700", "#FFFF00", "#FFF8DC", "#FF6347"]
+    - name: "Void Bloom"
+      hex: ["#000033", "#000080", "#0000FF", "#4169E1", "#87CEEB", "#E0E0FF"]
+  traditional:
+    - name: "Sacred Gold"
+      hex: ["#FFD700", "#DAA520", "#B8860B", "#FFFFFF", "#C0C0C0", "#000000"]
+    - name: "Temple Stone"
+      hex: ["#D2B48C", "#8B7355", "#6B4226", "#F5DEB3", "#FAEBD7", "#C19A6B"]
+    - name: "Lapis and Gold"
+      hex: ["#003366", "#0047AB", "#1560BD", "#FFD700", "#FFF8DC", "#FFFFFF"]
+
+art_direction:
+  aesthetic_tags:
+    - "sacred geometry"
+    - "flower of life"
+    - "hexagonal mandala"
+    - "geometric mysticism"
+    - "fractal circle matrix"
+    - "psychedelic sacred"
+    - "mathematical mysticism"
+    - "neon geometry"
+    - "bioluminescent grid"
+    - "golden ratio overlay"
+    - "cosmic blueprint"
+    - "interconnected circles"
+    - "vesica piscis lattice"
+  prompt_fragments:
+    - "Flower of Life mandala in neon plasma colors, glowing intersections, infinite recursion"
+    - "Sacred hexagonal circle matrix, 19 overlapping circles, vesica piscis geometry, psychedelic iridescent"
+    - "Flower of Life blueprint on black void, electric cyan lines, golden nodes at intersections"
+    - "Animated Flower of Life, circles pulsing in phi-ratio waves, Lisa Frank maximalist color"
+    - "Ultra-detailed sacred geometry mandala, Flower of Life matrix, fractal depth, cosmic horror beauty"
+  glsl_notes: >
+    Use hexagonal SDF (signed distance function) for base grid.
+    Offset every other row by 0.5 × spacing.
+    Animate by modulating circle radius r with sin(time + dist_from_center × 0.3).
+    For color: use hue rotation based on angle to center (atan2) + time.
+    Bloom/glow: add exponential falloff from circle edges.
+
+generative:
+  p5js_sketch: "sketches/p5js/flower_of_life.html"
+  shader_file: "shaders/fragment/flower_of_life.frag"
+  svg_generator: "svg/generators/flower_of_life.js"
+  key_parameters:
+    radius: 50         # pixels, base circle radius
+    rings: 2           # number of hexagonal rings (2 = 19 circles)
+    animate: true
+    animation_type: "phi_wave"  # phi_wave | ripple | breathe | rotate
+    color_mode: "hue_shift"     # hue_shift | plasma | void | traditional
+
+references:
+  - "Melchizedek, D. (1999). The Ancient Secret of the Flower of Life. Light Technology."
+  - "Lawlor, R. (1982). Sacred Geometry: Philosophy and Practice. Thames & Hudson."
+  - "Lundy, M. (2001). Sacred Geometry. Wooden Books."
+  - "Critchlow, K. (1979). Time Stands Still: New Light on Megalithic Science."
+  - "https://en.wikipedia.org/wiki/Overlapping_circles_grid"

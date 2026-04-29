@@ -1,0 +1,244 @@
+# Kabbalah — Sacred Geometry Tradition
+# Jewish mysticism: Tree of Life, Sefirot, Paths, Gematria
+
+name: "Kabbalah"
+tradition_type: "Jewish Mysticism / Esoteric"
+primary_language: "Hebrew"
+primary_texts:
+  - "Sefer Yetzirah (Book of Formation) — ~3rd-6th century CE"
+  - "Bahir (Book of Illumination) — 12th century CE"
+  - "Zohar (Book of Splendor) — Moses de León, ~1280 CE"
+  - "Sefer ha-Temunah — 13th century"
+  - "Lurianic Kabbalah — Isaac Luria, 16th century"
+  - "Tanya — Shneur Zalman of Liadi, 1797"
+
+primary_geometric_forms:
+  - "Tree of Life (Etz Chayyim)"
+  - "Metatron's Cube"
+  - "Star of David / Magen David"
+  - "Merkabah (divine chariot — precursor to Merkaba)"
+  - "The Four Worlds"
+
+# ─── Tree of Life ─────────────────────────────────────────────────────────────
+tree_of_life:
+  name: "Etz Chayyim — Tree of Life"
+  sefirot_count: 10
+  paths_count: 22
+  hidden_sefirah: "Da'at (Knowledge) — appears sometimes but is not one of the 10"
+
+  sefirot:
+    1:
+      name: "Keter"
+      meaning: "Crown"
+      position: top_center
+      coordinates: [0, 0]  # normalized grid, center = 0
+      pillar: middle
+      world: Atziluth
+      divine_name: "Ehyeh (I AM)"
+      archangel: Metatron
+      color: "White / Brilliance"
+      quality: "Pure Being, Will, Divine Source"
+      body: "Top of head / above head"
+
+    2:
+      name: "Chokhmah"
+      meaning: "Wisdom"
+      position: top_right
+      coordinates: [1, -1]
+      pillar: right  # Pillar of Mercy
+      world: Atziluth
+      divine_name: "Yah"
+      archangel: Raziel
+      color: "Gray / Silver / Starry Blue"
+      quality: "Primordial Wisdom, Flash of Insight, Father"
+      body: "Left brain hemisphere"
+
+    3:
+      name: "Binah"
+      meaning: "Understanding"
+      position: top_left
+      coordinates: [-1, -1]
+      pillar: left  # Pillar of Severity
+      world: Atziluth
+      divine_name: "YHVH Elohim"
+      archangel: Tzaphkiel
+      color: "Black / Indigo"
+      quality: "Deep Understanding, Form, Great Mother, Time"
+      body: "Right brain hemisphere"
+
+    4:
+      name: "Chesed"
+      meaning: "Mercy / Loving-kindness"
+      position: right_upper
+      coordinates: [1, -2]
+      pillar: right
+      world: Beriah
+      divine_name: "El"
+      archangel: Tzadkiel
+      color: "Blue"
+      quality: "Love, Grace, Expansion, Abundance, Jupiter-principle"
+      body: "Left arm"
+
+    5:
+      name: "Gevurah"
+      meaning: "Strength / Severity"
+      position: left_upper
+      coordinates: [-1, -2]
+      pillar: left
+      world: Beriah
+      divine_name: "Elohim Gibor"
+      archangel: Khamael
+      color: "Red"
+      quality: "Judgment, Restraint, Fear of God, Mars-principle"
+      body: "Right arm"
+
+    6:
+      name: "Tiferet"
+      meaning: "Beauty / Harmony"
+      position: center
+      coordinates: [0, -2]
+      pillar: middle
+      world: Beriah
+      divine_name: "YHVH Eloah ve-Da'at"
+      archangel: Raphael
+      color: "Yellow / Gold / Rose"
+      quality: "Harmony, Beauty, Heart, Christ-consciousness, Sun"
+      body: "Heart / chest"
+      special: "Center of the Tree — balances all other sefirot"
+
+    7:
+      name: "Netzach"
+      meaning: "Victory / Eternity"
+      position: right_lower
+      coordinates: [1, -3]
+      pillar: right
+      world: Yetzirah
+      divine_name: "YHVH Tzvaot"
+      archangel: Haniel
+      color: "Green / Emerald"
+      quality: "Desire, Creativity, Nature, Venus-principle"
+      body: "Left hip / loins"
+
+    8:
+      name: "Hod"
+      meaning: "Splendor / Glory"
+      position: left_lower
+      coordinates: [-1, -3]
+      pillar: left
+      world: Yetzirah
+      divine_name: "Elohim Tzvaot"
+      archangel: Michael
+      color: "Orange"
+      quality: "Logic, Language, Communication, Mercury-principle"
+      body: "Right hip / loins"
+
+    9:
+      name: "Yesod"
+      meaning: "Foundation"
+      position: center_lower
+      coordinates: [0, -3]
+      pillar: middle
+      world: Yetzirah
+      divine_name: "Shaddai El Chai"
+      archangel: Gabriel
+      color: "Purple / Violet"
+      quality: "Dreams, Subconscious, Sexuality, Moon-principle"
+      body: "Generative organs"
+
+    10:
+      name: "Malkuth"
+      meaning: "Kingdom"
+      position: bottom_center
+      coordinates: [0, -4]
+      pillar: middle
+      world: Assiah
+      divine_name: "Adonai Malekh"
+      archangel: Sandalphon
+      color: "Brown / Citrine / Olive / Black / Russet"
+      quality: "Physical world, Earth, manifestation, the body"
+      body: "Feet / physical body as whole"
+
+  hidden_sefirah_daat:
+    name: "Da'at"
+    meaning: "Knowledge / Gnosis"
+    position: upper_center_between_3_and_4
+    coordinates: [0, -1.5]
+    quality: "The abyss. Hidden conjunction of Chokhmah and Binah. Direct mystical knowing."
+    note: "Not counted among the 10 — appears in the 'fallen' tree when Keter retreats"
+
+  three_pillars:
+    right:
+      name: "Pillar of Mercy / Jachin"
+      sefirot: [2, 4, 7]
+      quality: "Expansion, Force, Masculine"
+    left:
+      name: "Pillar of Severity / Boaz"
+      sefirot: [3, 5, 8]
+      quality: "Form, Restriction, Feminine"
+    middle:
+      name: "Pillar of Equilibrium / Mildness"
+      sefirot: [1, 6, 9, 10]
+      quality: "Balance, Consciousness, Spirit"
+
+  four_worlds:
+    Atziluth: "Emanation — pure divine, fire element, Yod of YHVH"
+    Beriah: "Creation — archangels, water element, Heh of YHVH"
+    Yetzirah: "Formation — angels, air element, Vav of YHVH"
+    Assiah: "Action — physical world, earth element, second Heh of YHVH"
+
+  22_paths:
+    description: "22 paths connecting the sefirot — correspond to 22 Hebrew letters and Major Arcana"
+    path_11: { connects: [1,2], hebrew: "Aleph", letter_meaning: "Ox", tarot: "The Fool", element: Air }
+    path_12: { connects: [1,3], hebrew: "Beth", letter_meaning: "House", tarot: "The Magician", planet: Mercury }
+    path_13: { connects: [1,6], hebrew: "Gimel", letter_meaning: "Camel", tarot: "The High Priestess", planet: Moon }
+    path_14: { connects: [2,3], hebrew: "Daleth", letter_meaning: "Door", tarot: "The Empress", planet: Venus }
+    path_15: { connects: [2,6], hebrew: "Heh", letter_meaning: "Window", tarot: "The Emperor", zodiac: Aries }
+    path_16: { connects: [2,4], hebrew: "Vav", letter_meaning: "Nail/Hook", tarot: "The Hierophant", zodiac: Taurus }
+    path_17: { connects: [3,6], hebrew: "Zayin", letter_meaning: "Sword", tarot: "The Lovers", zodiac: Gemini }
+    path_18: { connects: [3,5], hebrew: "Cheth", letter_meaning: "Fence", tarot: "The Chariot", zodiac: Cancer }
+    path_19: { connects: [4,5], hebrew: "Teth", letter_meaning: "Serpent", tarot: "Strength", zodiac: Leo }
+    path_20: { connects: [4,6], hebrew: "Yod", letter_meaning: "Hand", tarot: "The Hermit", zodiac: Virgo }
+    path_21: { connects: [4,7], hebrew: "Kaph", letter_meaning: "Palm", tarot: "Wheel of Fortune", planet: Jupiter }
+    path_22: { connects: [5,6], hebrew: "Lamed", letter_meaning: "Ox-goad", tarot: "Justice", zodiac: Libra }
+    path_23: { connects: [5,8], hebrew: "Mem", letter_meaning: "Water", tarot: "The Hanged Man", element: Water }
+    path_24: { connects: [6,7], hebrew: "Nun", letter_meaning: "Fish", tarot: "Death", zodiac: Scorpio }
+    path_25: { connects: [6,9], hebrew: "Samekh", letter_meaning: "Support", tarot: "Temperance", zodiac: Sagittarius }
+    path_26: { connects: [6,8], hebrew: "Ayin", letter_meaning: "Eye", tarot: "The Devil", zodiac: Capricorn }
+    path_27: { connects: [7,8], hebrew: "Peh", letter_meaning: "Mouth", tarot: "The Tower", planet: Mars }
+    path_28: { connects: [7,9], hebrew: "Tzaddi", letter_meaning: "Fish-hook", tarot: "The Star", zodiac: Aquarius }
+    path_29: { connects: [7,10], hebrew: "Qoph", letter_meaning: "Back of head", tarot: "The Moon", zodiac: Pisces }
+    path_30: { connects: [8,9], hebrew: "Resh", letter_meaning: "Head", tarot: "The Sun", planet: Sun }
+    path_31: { connects: [8,10], hebrew: "Shin", letter_meaning: "Tooth", tarot: "Judgement", element: Fire }
+    path_32: { connects: [9,10], hebrew: "Tav", letter_meaning: "Cross/Mark", tarot: "The World", planet: Saturn }
+
+sacred_geometry_correspondences:
+  tetrahedron: "Fire tetrahedron → Gevurah (severity)"
+  cube: "Earth cube → Malkuth (kingdom)"
+  octahedron: "Air octahedron → Tiferet (beauty)"
+  icosahedron: "Water icosahedron → Chesed (mercy)"
+  dodecahedron: "Aether → Keter (crown)"
+  
+  metatrons_cube: >
+    Metatron is the archangel assigned to Keter. His cube contains all Platonic solids,
+    thus the entire manifest creation. Metatron is 'the scribe of God' and 'lesser YHVH.'
+    
+  flower_of_life: >
+    The 10 sefirot can be mapped onto the Flower of Life.
+    The hexagonal structure encodes the 6 directions of space + center.
+    
+  vesica_piscis: >
+    The intersection of Chokhmah and Binah — Wisdom and Understanding —
+    produces Da'at (hidden Knowledge) at the intersection point.
+
+art_direction:
+  aesthetic_tags:
+    - "Tree of Life Kabbalah"
+    - "10 sefirot diagram"
+    - "Hebrew mysticism geometry"
+    - "Etz Chayyim sacred"
+    - "22 paths mandala"
+    - "Kabbalistic sacred geometry"
+  prompt_fragments:
+    - "Kabbalistic Tree of Life, 10 sefirot glowing in Hebrew gold, 22 paths visible, sacred geometry mandala"
+    - "Etz Chayyim Tree of Life, neon sacred geometry, sefirot as glowing spheres on dark background"
+    - "Tree of Life with tarot correspondence, mystical diagram, illuminated manuscript style, gold on lapis"

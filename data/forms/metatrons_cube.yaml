@@ -1,0 +1,161 @@
+# Metatron's Cube
+# The geometric key — connects all Platonic Solids in one unified form
+
+name: "Metatron's Cube"
+aliases:
+  - "Metatrons Cube"
+  - "The Fruit of Life Linework"
+  - "Cosmic Blueprint"
+category: complex
+subcategory: line_geometry
+complexity: advanced
+
+construction:
+  method: compass_and_straightedge
+  derived_from: "Fruit of Life (13 circles extracted from Flower of Life)"
+  steps:
+    - step: 1
+      action: "Start with Flower of Life (19 circles, 2 hexagonal rings)."
+    - step: 2
+      action: "Identify the 13 circles of the Fruit of Life: center + 6 at inner ring + 6 at outer ring (every other circle, not adjacent ones)."
+    - step: 3
+      action: "Mark the center point of all 13 circles."
+    - step: 4
+      action: "Draw a straight line from EVERY center to EVERY other center."
+    - step: 5
+      action: "Total lines: 13 × 12 / 2 = 78 unique connections."
+    - step: 6
+      action: "This linework encodes all 5 Platonic Solids simultaneously."
+  
+  embedded_platonic_solids:
+    tetrahedron:
+      visible_as: "Two overlapping triangles (Star of David in 2D)"
+      vertices: 4
+      edges_visible: 6
+    hexahedron_cube:
+      visible_as: "Central hexagon with connecting lines"
+      vertices: 8
+      projection: "Orthographic"
+    octahedron:
+      visible_as: "Diamond/rhombus pattern"
+      vertices: 6
+    dodecahedron:
+      visible_as: "Pentagon pattern (requires φ-based extraction)"
+      vertices: 20
+    icosahedron:
+      visible_as: "Inner triangle/pentagon relationships"
+      vertices: 12
+
+  key_measurements:
+    fruit_of_life_circles: 13
+    total_connections: 78
+    rotational_symmetry: 6
+    reflection_symmetry: 6
+
+mathematics:
+  core_constants: ["√3", "φ", "√2", "√5"]
+  
+  combinatorics:
+    circles: 13
+    connections: 78  # C(13,2) = 13!/(2!×11!) = 78
+    
+  embedded_ratios:
+    phi_appears_in: "Dodecahedron/Icosahedron extraction"
+    sqrt3_appears_in: "Hexagonal base, triangle proportions"
+    sqrt2_appears_in: "Octahedron diagonals"
+    
+  group_theory:
+    symmetry_group: "D6 (dihedral group of order 12)"
+    rotational_symmetries: [60, 120, 180, 240, 300, 360]
+    reflection_axes: 6
+
+historical:
+  etymology:
+    metatron: >
+      Metatron is an archangel in Jewish mysticism (Kabbalah/Merkabah literature),
+      described as the heavenly scribe and mediator. The name may derive from
+      Greek 'meta + thronos' (beyond/after the throne) or the Latin 'metator'
+      (measurer, guide). The connection to this geometric form is largely modern esoteric.
+    first_named_as_such: "Modern New Age / sacred geometry movement (late 20th century)"
+    older_names: "The Fruit of Life linework had no unified name in antiquity"
+  
+  related_ancient_concepts:
+    - "The Kabbalistic Tree of Life shares some node relationships"
+    - "Pythagorean geometry of the five regular solids (Timaeus, Plato)"
+    - "Medieval Christian sacred geometry"
+
+symbolism:
+  traditions:
+    kabbalah:
+      - "Metatron as Keter (Crown) of the Tree of Life"
+      - "The Angel who guards the threshold between human and divine"
+      - "Contains 10 sefirot positions geometrically"
+    esoteric:
+      - "Master blueprint of creation"
+      - "The geometric language God used to create the universe"
+      - "Contains all patterns of spacetime"
+    new_age:
+      - "Activation symbol for higher consciousness"
+      - "Protective sacred geometry"
+      - "Chakra alignment geometry"
+  themes:
+    - "All in One, One in All"
+    - "The template of physical reality"
+    - "Angelic architecture"
+    - "Masculine geometry (lines) built on feminine geometry (circles)"
+
+color_palettes:
+  psychedelic:
+    - name: "Electric Merkaba"
+      hex: ["#00FFFF", "#FF00FF", "#FFFF00", "#FF0080", "#0080FF", "#80FF00"]
+    - name: "Void Architect"
+      hex: ["#000000", "#0A0A2A", "#1A1A4A", "#00FFCC", "#FF00AA", "#CCFF00"]
+    - name: "Plasma Blueprint"
+      hex: ["#FF6B00", "#FF0066", "#9900FF", "#0066FF", "#00FFCC", "#CCFF00"]
+  traditional:
+    - name: "Angelic Gold"
+      hex: ["#FFFFF0", "#FFD700", "#FFA500", "#DAA520", "#B8860B", "#8B6914"]
+    - name: "Sacred Silver"
+      hex: ["#F8F8FF", "#C0C0C0", "#A8A8A8", "#808080", "#404040", "#000000"]
+
+art_direction:
+  aesthetic_tags:
+    - "metatrons cube"
+    - "sacred linework"
+    - "all platonic solids"
+    - "78-line matrix"
+    - "angelic geometry"
+    - "cosmic blueprint"
+    - "platonic solid overlay"
+    - "sacred geometry tattoo"
+    - "mathematical mysticism"
+    - "neon wireframe cosmos"
+  prompt_fragments:
+    - "Metatron's Cube, all five Platonic solids visible, neon wireframe on black void, glowing nodes"
+    - "Metatron's Cube sacred geometry, 78 connecting lines, electric blue and gold, cosmic blueprint"
+    - "Metatron's Cube mandala, psychedelic iridescent linework, infinite zoom, fractal depth"
+    - "Angelic geometric blueprint, Metatron's Cube in silver and gold filigree, sacred mathematics"
+    - "Metatron's Cube animation, lines drawing in sequence, electric plasma, dark sacred space"
+  glsl_notes: >
+    Render 13 circle centers in hexagonal arrangement.
+    For each pair of centers, draw a line using capsule SDF.
+    Animate: draw lines in sequence (by connection index or distance from center).
+    Color by angle to center (atan2-based hue) or by embedded solid (color-coded).
+    Layer glow: soft bloom on all lines, brighter at nodes.
+
+generative:
+  p5js_sketch: "sketches/p5js/metatrons_cube.html"
+  shader_file: "shaders/fragment/metatrons_cube.frag"
+  svg_generator: "svg/generators/metatrons_cube.js"
+  key_parameters:
+    show_circles: true    # show the 13 Fruit of Life circles
+    show_lines: true      # show the 78 connections
+    highlight_solids: false  # color-code each embedded solid
+    animate_draw: true    # animate lines drawing in
+    animation_speed: 0.5  # 0-1
+
+references:
+  - "Melchizedek, D. (1999). The Ancient Secret of the Flower of Life. Light Technology."
+  - "Plato. Timaeus. (360 BCE). (On the five regular solids)"
+  - "Lawlor, R. (1982). Sacred Geometry. Thames & Hudson."
+  - "https://en.wikipedia.org/wiki/Metatron%27s_cube"

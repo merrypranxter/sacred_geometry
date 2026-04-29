@@ -1,0 +1,104 @@
+# Cube / Hexahedron — Earth
+name: "Cube"
+aliases: ["Hexahedron", "Regular hexahedron"]
+category: platonic_solid
+element: Earth
+faces: 6
+vertices: 8
+edges: 12
+face_type: "Square"
+schläfli_symbol: "{4,3}"
+dual: "Octahedron"
+formulas:
+  surface_area: "6a²"
+  volume: "a³"
+  circumradius: "a√3/2"
+  inradius: "a/2"
+  dihedral_angle_degrees: 90
+symbolism:
+  element_qualities: ["Stable", "Dense", "Grounding", "Structure", "Earth"]
+  platonic_element: Earth
+  alchemical: "Earth triangle pointing down ▽ with horizontal line"
+art_direction:
+  prompt_fragments:
+    - "Metatron's Cube hexahedron projection, earth element solid, sacred cube, neon wireframe"
+  glsl_notes: "box SDF: length(max(abs(p) - halfSize, 0.0)) + min(max(p.x,max(p.y,p.z)) + halfSize.x, 0.0) -- rounded cube possible with + r"
+---
+# Octahedron — Air
+name: "Octahedron"
+aliases: ["Regular octahedron"]
+category: platonic_solid
+element: Air
+faces: 8
+vertices: 6
+edges: 12
+face_type: "Equilateral triangle"
+schläfli_symbol: "{3,4}"
+dual: "Cube"
+formulas:
+  surface_area: "2√3·a²"
+  volume: "√2/3·a³"
+  circumradius: "a/√2"
+  inradius: "a/√6"
+  dihedral_angle_degrees: 109.4712
+symbolism:
+  element_qualities: ["Light", "Mobile", "Expansive", "Breath", "Air"]
+  note: "Held between thumb and finger at two vertices — spins freely, like air"
+art_direction:
+  prompt_fragments:
+    - "Sacred octahedron, air element geometry, crystalline diamond form, spinning, neon wireframe"
+  glsl_notes: "octahedron SDF: (abs(p.x)+abs(p.y)+abs(p.z)-s)/sqrt(3.0)"
+---
+# Dodecahedron — Aether
+name: "Dodecahedron"
+aliases: ["Regular dodecahedron"]
+category: platonic_solid
+element: Aether / Cosmos
+faces: 12
+vertices: 20
+edges: 30
+face_type: "Regular pentagon"
+schläfli_symbol: "{5,3}"
+dual: "Icosahedron"
+formulas:
+  surface_area: "3√(25+10√5)·a²"
+  volume: "(15+7√5)/4·a³"
+  dihedral_angle_degrees: 116.565
+  phi_dependence: "All measurements involve φ directly"
+symbolism:
+  element_qualities: ["Cosmic", "Quintessential", "Encompassing all", "Heavenly sphere"]
+  plato_quote: "God used it for the whole, embroidering it with figures"
+  phi_geometry: "Pentagon faces = directly encodes φ in every diagonal"
+art_direction:
+  prompt_fragments:
+    - "Sacred dodecahedron, aether element, cosmic pentagon geometry, golden ratio encoded, deep space"
+  glsl_notes: "No simple SDF — use 12 half-space intersections for each pentagonal face"
+---
+# Icosahedron — Water
+name: "Icosahedron"
+aliases: ["Regular icosahedron"]
+category: platonic_solid
+element: Water
+faces: 20
+vertices: 12
+edges: 30
+face_type: "Equilateral triangle"
+schläfli_symbol: "{3,5}"
+dual: "Dodecahedron"
+formulas:
+  surface_area: "5√3·a²"
+  volume: "5(3+√5)/12·a³"
+  circumradius: "a·sin(2π/5)"
+  dihedral_angle_degrees: 138.190
+  phi_dependence: "Vertices are 3 golden rectangles (mutually perpendicular)"
+symbolism:
+  element_qualities: ["Flowing", "Spherical", "Abundant", "Adaptable", "Water"]
+  geometric_note: "12 vertices = 3 mutually perpendicular golden rectangles"
+  virus_note: "Many virus capsids are icosahedral (Buckminster Fuller connection)"
+art_direction:
+  prompt_fragments:
+    - "Sacred icosahedron, water element, 20 triangular faces, glowing crystal, liquid sacred geometry"
+  glsl_notes: >
+    icosahedron SDF from Inigo Quilez:
+    Use the 5-fold symmetry. Mirror p into a fundamental domain.
+    Cross product trick: 3 golden rectangle planes.

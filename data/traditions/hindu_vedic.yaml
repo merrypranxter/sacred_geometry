@@ -1,0 +1,292 @@
+# Hindu / Vedic Sacred Geometry Tradition
+# Yantra, Mandala, Vastu, Vedic mathematics
+
+name: "Hindu / Vedic"
+tradition_type: "Dharmic Religion / Vedic Science"
+primary_languages: ["Sanskrit", "Tamil"]
+primary_texts:
+  - "Rigveda (~1500–1200 BCE) — earliest Vedic hymns"
+  - "Shulba Sutras (~800–200 BCE) — earliest systematic geometry texts in the world"
+  - "Arthashastra — governance including architecture"
+  - "Manasara — treatise on architecture and sculpture"
+  - "Vastu Shastra — sacred architecture"
+  - "Tantrasara — tantric synthesis"
+  - "Vamakeshvara Tantra — Sri Yantra source text"
+
+primary_geometric_forms:
+  - "Sri Yantra / Sri Chakra"
+  - "Mandala (maṇḍala)"
+  - "Vastu Purusha Mandala"
+  - "Shri Chakra (same as Sri Yantra)"
+  - "Navagraha chakra"
+  - "Yantra (instrument)"
+
+# ─── Yantra System ────────────────────────────────────────────────────────────
+yantra_system:
+  definition: >
+    A yantra (यन्त्र, yantra = 'instrument', 'device') is a mystical diagram
+    used in Hindu and Buddhist tantric traditions as an aid to meditation,
+    worship, and ritual. A yantra is the geometric body of a deity — it IS
+    the deity in geometric form.
+  
+  types:
+    shaiva: "Yantras of Shiva deities"
+    shakta: "Yantras of Devi/Shakti deities (most complex)"
+    vaishnava: "Yantras of Vishnu"
+    ganapatya: "Yantras of Ganesha"
+    planetary: "Navagraha yantras for the 9 planets"
+  
+  components:
+    bindu:
+      name: "Bindu (बिन्दु)"
+      meaning: "Point / dot"
+      represents: "Unmanifest consciousness, the seed of all manifestation"
+      geometry: "Dimensionless point"
+    
+    trikona:
+      name: "Trikona (त्रिकोण)"
+      meaning: "Triangle"
+      upward: "Shiva — fire, masculine, consciousness"
+      downward: "Shakti — water, feminine, energy"
+      star: "Shatkonas (Star of David) = union of both"
+    
+    chakra:
+      name: "Chakra (चक्र)"
+      meaning: "Circle / wheel"
+      represents: "Completeness, eternity, the divine"
+    
+    padma:
+      name: "Padma (पद्म)"
+      meaning: "Lotus"
+      petal_counts: [4, 8, 12, 16, 32, 64, 1000]
+      represents: "Purity, spiritual unfoldment, the chakras"
+    
+    bhupura:
+      name: "Bhupura (भूपुर)"
+      meaning: "Earth-city / ground"
+      form: "Square with 4 gates (T-shaped openings at cardinal directions)"
+      represents: "Earth element, physical manifestation, the temple walls"
+      note: "The outer enclosure of all complete yantras"
+
+# ─── Major Yantras ────────────────────────────────────────────────────────────
+major_yantras:
+  sri_yantra:
+    name: "Sri Yantra / Sri Chakra"
+    deity: "Tripura Sundari (Lalita)"
+    tradition: "Shaktism"
+    complexity: "Highest — considered the queen of all yantras"
+    see_also: "data/forms/sri_yantra.yaml"
+  
+  kali_yantra:
+    name: "Kali Yantra"
+    deity: "Kali"
+    form: "Eight-pointed star (two squares at 45°) in a circle, bhupura"
+    represents: "Destruction, time, liberation, primordial darkness"
+  
+  durga_yantra:
+    name: "Durga Yantra"
+    deity: "Durga"
+    form: "Ten-petaled lotus, triangle pointing down"
+    represents: "Protection, shakti, victory over ego"
+  
+  ganesh_yantra:
+    name: "Ganesh Yantra"
+    deity: "Ganesha"
+    form: "Hexagram with Ganesha bija mantra"
+    represents: "Obstacle removal, beginnings, wisdom"
+  
+  surya_yantra:
+    name: "Surya Yantra"
+    deity: "Surya (Sun)"
+    form: "Six-pointed star with 12 outer petals"
+    represents: "Solar energy, health, vitality"
+
+# ─── Mandala System ───────────────────────────────────────────────────────────
+mandala_system:
+  etymology: "Sanskrit: maṇḍala = circle + container of essence"
+  
+  types:
+    tanka: "Painted mandala (thangka tradition)"
+    sand: "Sand mandala (Tibetan Buddhist practice)"
+    three_dimensional: "3D mandala / architectural mandala"
+    vastu: "Architectural ground plan mandala"
+  
+  structure:
+    center: "Bindu or deity image"
+    rings: "Progressive enclosures from subtle to gross"
+    gates: "Four cardinal direction gates"
+    outer: "Square earth enclosure"
+  
+  vastu_purusha_mandala:
+    name: "Vastu Purusha Mandala"
+    form: "Grid of 8×8 = 64 or 9×9 = 81 squares"
+    purpose: "Sacred architecture — aligns buildings with cosmic energies"
+    purusha: "The cosmic being whose body IS the mandala"
+    brahmasthana: "Sacred center zone — must remain open"
+    zones:
+      brahmana: "Center — Brahma / absolute"
+      devika: "Surrounding zone — lesser deities"
+      manushya: "Human zone — living areas"
+      paishacha: "Outer zone — protective"
+    note: "Hindu temples, homes, and cities are laid out on this grid"
+
+# ─── Shulba Sutras ────────────────────────────────────────────────────────────
+shulba_sutras:
+  name: "Shulba Sutras (शुल्बसूत्र)"
+  meaning: "Aphorisms of the cord/rope"
+  date: "~800–200 BCE"
+  purpose: "Precise geometric instructions for constructing Vedic fire altars (yajnas)"
+  
+  key_results:
+    pythagorean_theorem: >
+      States what we call the Pythagorean theorem centuries before Pythagoras.
+      "The rope stretched along the length of the diagonal of a rectangle makes
+      an area which the vertical and horizontal sides make together."
+    
+    pythagorean_triples: "Lists (3,4,5), (5,12,13), (8,15,17), (7,24,25) explicitly"
+    
+    squaring_the_circle: >
+      Gives an approximation method (not exact — impossble, as proven later).
+      Approximation: π ≈ (1 - 1/8 + 1/8×29 - 1/8×29×6 + 1/8×29×6×8)² ≈ 3.0883
+    
+    sqrt2_approximation: >
+      "The diagonal of a square whose side is one unit is:
+      1 + 1/3 + 1/(3×4) - 1/(3×4×34) = 577/408 ≈ 1.41421356..."
+      Accurate to 5 decimal places — remarkable.
+    
+    altar_construction: >
+      Fire altars must be precise geometric shapes (falcon, tortoise, wheel, etc.)
+      and must maintain exact area while changing shape — a sophisticated geometric challenge.
+
+# ─── Chakra System ────────────────────────────────────────────────────────────
+chakra_system:
+  name: "Chakra (चक्र) — Energy Centers"
+  count: 7  # major, though systems vary (4, 5, 6, 7, 12, 21...)
+  
+  chakras:
+    1:
+      name: "Muladhara"
+      meaning: "Root support"
+      element: Earth
+      location: "Base of spine"
+      lotus_petals: 4
+      color: Red
+      yantra_shape: "Square (earth)"
+      bija_mantra: "LAM"
+      frequency_hz: 396
+    2:
+      name: "Svadhisthana"
+      meaning: "One's own place"
+      element: Water
+      location: "Sacral / lower abdomen"
+      lotus_petals: 6
+      color: Orange
+      yantra_shape: "Circle (water)"
+      bija_mantra: "VAM"
+      frequency_hz: 417
+    3:
+      name: "Manipura"
+      meaning: "City of gems"
+      element: Fire
+      location: "Solar plexus"
+      lotus_petals: 10
+      color: Yellow
+      yantra_shape: "Triangle pointing up (fire)"
+      bija_mantra: "RAM"
+      frequency_hz: 528
+    4:
+      name: "Anahata"
+      meaning: "Unstruck sound"
+      element: Air
+      location: "Heart"
+      lotus_petals: 12
+      color: Green
+      yantra_shape: "Star of David / two triangles (air)"
+      bija_mantra: "YAM"
+      frequency_hz: 639
+    5:
+      name: "Vishuddha"
+      meaning: "Especially pure"
+      element: Ether / Akasha
+      location: "Throat"
+      lotus_petals: 16
+      color: Blue
+      yantra_shape: "Circle in triangle"
+      bija_mantra: "HAM"
+      frequency_hz: 741
+    6:
+      name: "Ajna"
+      meaning: "Command"
+      element: Mind / Light
+      location: "Third eye / forehead"
+      lotus_petals: 2  # or 96 — two main petals each with 48
+      color: Indigo
+      yantra_shape: "Circle with downward triangle, two petals"
+      bija_mantra: "OM"
+      frequency_hz: 852
+    7:
+      name: "Sahasrara"
+      meaning: "Thousand-petaled"
+      element: Pure Consciousness
+      location: "Crown of head"
+      lotus_petals: 1000  # symbolic — infinite
+      color: Violet / White
+      yantra_shape: "1000-petal lotus (or just radiant circle)"
+      bija_mantra: "Silence / AUM"
+      frequency_hz: 963
+
+# ─── Sacred Mathematics ───────────────────────────────────────────────────────
+vedic_sacred_numbers:
+  108:
+    significance: "Harshad number divisible by sum of digits. 1+0+8=9. 9×12=108."
+    uses:
+      - "108 beads in a mala (rosary)"
+      - "108 names of major deities"
+      - "108 Upanishads"
+      - "Sun diameter = ~108 × Earth diameter"
+      - "Sun-Earth distance = ~108 × Sun diameter"
+      - "Moon diameter = ~108 × Moon-Earth distance"
+      - "108 Pithas (sacred sites in India)"
+    factors: "108 = 4 × 27 = 4 × 3³ = 2² × 3³"
+    
+  432:
+    significance: "432,000 = 108 × 4000. Vedic cosmic time unit."
+    uses:
+      - "Kali Yuga duration: 432,000 years"
+      - "Dvapara Yuga: 864,000 = 2 × 432,000 years"
+      - "Treta Yuga: 1,296,000 = 3 × 432,000 years"
+      - "Krita/Satya Yuga: 1,728,000 = 4 × 432,000 years"
+      - "432 Hz = proposed 'natural' tuning (A)"
+    
+  64:
+    significance: "64 = 2⁶ = 8² = 4³"
+    uses:
+      - "64 squares of the Vastu Purusha Mandala"
+      - "64 chapters of the Chhandogya Upanishad"
+      - "64 yoginis in Shakta tradition"
+      - "64 arts (kalas) a courtesan should know"
+      - "64 codons in DNA (discovered millennia later)"
+    
+  9:
+    significance: "The 'completion' number — all multiples of 9 digit-sum to 9"
+    uses:
+      - "9 planets (Navagraha)"
+      - "9 triangles of Sri Yantra"
+      - "9 enclosures of the Sri Yantra"
+      - "9 layers of consciousness"
+
+art_direction:
+  aesthetic_tags:
+    - "Hindu yantra sacred geometry"
+    - "Sanskrit sacred diagram"
+    - "chakra system geometry"
+    - "mandala Vedic"
+    - "lotus sacred geometry"
+    - "Shakti sacred geometry"
+    - "tantric Hindu art"
+    - "Vastu Purusha mandala"
+  prompt_fragments:
+    - "Hindu yantra sacred geometry, Sanskrit mantras, lotus petals, saffron and gold, tantric maximalist"
+    - "Chakra system sacred geometry, 7 lotus diagrams, kundalini serpent, rainbow energy anatomy"
+    - "Sri Yantra with Devi goddess emerging from center, tantric divine feminine, psychedelic neon"
+    - "Vastu Purusha mandala, sacred architecture grid, 64 squares, cosmic being embedded in plan"
