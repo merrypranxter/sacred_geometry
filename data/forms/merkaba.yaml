@@ -1,0 +1,67 @@
+# Merkaba / Star Tetrahedron
+name: "Merkaba"
+aliases: ["Star Tetrahedron", "Light Body", "Mer-Ka-Ba"]
+category: complex
+subcategory: 3d_form
+complexity: advanced
+
+construction:
+  method: compass_and_straightedge
+  description: "Two interlocking tetrahedra — one pointing up (masculine/electric), one pointing down (feminine/magnetic). In 3D, they interpenetrate. In 2D projection, they appear as a Star of David / hexagram."
+  steps:
+    - "Draw a circle. Inscribe an equilateral triangle pointing up (▲)."
+    - "Inscribe a second equilateral triangle pointing down (▽)."
+    - "The 6-pointed star (hexagram) is the 2D projection of the Merkaba."
+    - "In 3D: extend each triangle into a tetrahedron. The two tetrahedra interpenetrate."
+  
+  3d_form: "Star Tetrahedron = tetrahedron + its dual tetrahedron (inverted)"
+  related_to:
+    - "Vector Equilibrium (cuboctahedron) — intermediate form when spinning"
+    - "Stella Octangula — compound of two tetrahedra in a cube"
+
+mathematics:
+  vertices: 8  # 4 from each tetrahedron, shared with cube vertices
+  edges: 12   # not counting interpenetration edges
+  star_points: 8
+  
+  proportions:
+    male_tetrahedron: "Points up — 3 base vertices + apex"
+    female_tetrahedron: "Points down — 3 base vertices + nadir"
+    shared_center: true
+    inscribes_in: "Cube (both tetrahedra use 4 of the 8 cube vertices each)"
+
+symbolism:
+  traditions:
+    kabbalah:
+      - "Merkabah (מרכבה) = divine chariot/throne in Ezekiel's vision"
+      - "Vehicle of the soul ascending to God"
+    new_age:
+      - "Light body / energy field of the human being"
+      - "Counter-rotating fields: lower spins left, upper spins right"
+      - "Activation through breathing meditation"
+    egyptian:
+      - "Mer = light, Ka = spirit, Ba = body"
+      - "(This etymology is disputed by Egyptologists)"
+  themes: ["Light body", "Ascension", "Divine vehicle", "Counter-rotation", "Union of polarities"]
+
+color_palettes:
+  psychedelic:
+    - name: "Plasma Merkaba"
+      hex: ["#FF00FF", "#00FFFF", "#FFFF00", "#FF0080", "#0080FF", "#80FF00"]
+  traditional:
+    - name: "Sacred White Light"
+      hex: ["#FFFFFF", "#E8E8FF", "#C0C0FF", "#8080FF", "#4040FF", "#0000CC"]
+
+art_direction:
+  aesthetic_tags: ["merkaba", "star tetrahedron", "light body", "counter-rotating geometry", "3D sacred form"]
+  prompt_fragments:
+    - "Merkaba star tetrahedron, two interlocking tetrahedra, electric plasma light body, cosmic activation"
+    - "Merkaba sacred geometry, glowing 3D star tetrahedron, blue and violet plasma, dark space background"
+  glsl_notes: >
+    Two tetrahedra: use standard tetrahedron SDF, render one normal and one inverted (scale y by -1).
+    Add counter-rotation: rotate_y(time) for one, rotate_y(-time) for the other.
+    Intersect with union for star shape. Color by which tetrahedron dominates.
+
+generative:
+  p5js_sketch: "sketches/p5js/merkaba.html"
+  shader_file: "shaders/fragment/merkaba.frag"

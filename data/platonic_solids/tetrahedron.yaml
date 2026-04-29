@@ -1,0 +1,196 @@
+# Tetrahedron — Fire
+# The simplest Platonic solid — 4 equilateral triangular faces
+
+name: "Tetrahedron"
+category: platonic_solid
+element: Fire
+number: 1  # First Platonic solid
+traditional_order: 1
+
+geometry:
+  faces: 4
+  vertices: 4
+  edges: 6
+  face_type: "Equilateral triangle"
+  faces_per_vertex: 3
+  euler_characteristic: 2  # V - E + F = 4 - 6 + 4 = 2
+  
+  vertex_configuration: "3.3.3"  # Three triangles at each vertex
+  schläfli_symbol: "{3,3}"
+  
+  dual: "Tetrahedron (self-dual!)"
+  
+  coordinates:
+    unit_tetrahedron:
+      description: "Vertices of tetrahedron inscribed in unit cube"
+      vertices:
+        - [1, 1, 1]
+        - [1, -1, -1]
+        - [-1, 1, -1]
+        - [-1, -1, 1]
+    normalized:
+      description: "Centered at origin, edge length = 1"
+      vertices:
+        - [1, 0, "-1/√2"]
+        - [-1, 0, "-1/√2"]
+        - [0, 1, "1/√2"]
+        - [0, -1, "1/√2"]
+
+mathematics:
+  edge_length: a  # variable
+  
+  formulas:
+    surface_area: "a²√3"
+    volume: "a³/(6√2)"
+    inradius: "a/(2√6)"      # radius of inscribed sphere
+    circumradius: "a√(3/8)"  # radius of circumscribed sphere
+    midradius: "a/(2√2)"     # radius of midsphere (touches edges)
+    
+    height: "a√(2/3)"
+    dihedral_angle_degrees: 70.5288  # arccos(1/3)
+    dihedral_angle_exact: "arccos(1/3)"
+    solid_angle_at_vertex_steradians: "arccos(23/27)"
+    
+  ratios:
+    circumradius_to_inradius: 3  # exactly 3:1
+    height_to_edge: 0.8165  # √(2/3)
+    
+  self_duality: >
+    The tetrahedron is the only Platonic solid that is its own dual.
+    The dual of a tetrahedron (connecting face centers) is another tetrahedron.
+    This self-referential property gives it unique status.
+    
+  in_other_solids:
+    cube: "Two tetrahedra can be inscribed in a cube (stella octangula)"
+    octahedron: "Tetrahedron + dual tetrahedron = stella octangula inside octahedron"
+    metatrons_cube: "Visible as two overlapping triangles (2D projection)"
+
+symmetry:
+  group: "Td (tetrahedral symmetry)"
+  order: 24
+  rotational_group: "T (chiral tetrahedral)"
+  rotational_order: 12
+  rotation_axes:
+    - type: "C3 (3-fold)"
+      count: 4
+      description: "Through each vertex and opposite face center"
+    - type: "C2 (2-fold)"
+      count: 3
+      description: "Through midpoints of opposite edges"
+  reflection_planes: 6
+  improper_rotations: true
+  
+  note: "T symmetry (rotations only) is the smallest chiral symmetry group"
+
+physical_analogues:
+  crystals:
+    - "Diamond cubic structure has tetrahedral bonding"
+    - "Zinc blende (sphalerite) — ZnS crystal structure"
+    - "Methane (CH₄) — tetrahedral molecular geometry"
+    - "Many carbon compounds — sp³ hybridization"
+  
+  organic_chemistry:
+    - "The carbon atom bonds tetrahedrally (sp³)"
+    - "Water (H₂O) — bent, but tetrahedral electron geometry"
+    - "Ammonia (NH₃) — pyramidal, tetrahedral electron geometry"
+    
+  structural_engineering:
+    - "Tetrahedral space frames — extremely rigid"
+    - "Geodesic dome subcomponent"
+    - "Truss structures"
+    
+  natural:
+    - "Pollen grain of some plants"
+    - "Some virus capsid geometry"
+    - "Tetrahedral ice crystal bonding"
+
+historical:
+  platonic_context:
+    assigned_element: "Fire"
+    reasoning: >
+      Plato (Timaeus, ~360 BCE) assigned the tetrahedron to Fire because it has
+      the fewest faces, making it the 'sharpest' and most 'piercing' — like fire.
+      Also the lightest (fewest faces = least stable = most mobile = fire-like).
+    plato_quote: "The first will be the smallest and sharpest... let this be fire."
+    
+  history:
+    - "Known to ancient Egyptians"
+    - "Described by Plato in Timaeus"
+    - "Systematically studied by Euclid in Elements Book XIII"
+    - "Named 'tetrahedron' by scholars of the 18th-19th century"
+    - "Buckminster Fuller's work on tetrahedral geometry (Synergetics)"
+
+symbolism:
+  traditions:
+    platonic_hermetic:
+      element: Fire
+      qualities: ["Hot", "Dry", "Active", "Expansive", "Masculine"]
+      direction: South (in some traditions)
+      season: Summer
+    kabbalah:
+      - "Tetragrammaton — the four-lettered name of God (YHWH)"
+      - "Four worlds of the Kabbalah"
+      - "The number 4 as stability through dynamic balance"
+    alchemical:
+      - "Fire triangle pointing upward ▲"
+      - "Purification and transformation"
+    merkaba_context:
+      - "One half of the Star Tetrahedron (Merkaba)"
+      - "Male/electric tetrahedron (pointing up)"
+  themes:
+    - "Simplicity as perfection"
+    - "The minimum possible solid"
+    - "Fire, transformation, spirit"
+    - "Self-reference (self-dual)"
+    - "Structural rigidity"
+    - "The tetragram — four as completion"
+
+color_palettes:
+  element_fire:
+    - name: "Ignition"
+      hex: ["#FF4500", "#FF6600", "#FF8C00", "#FFD700", "#FFFF00", "#FFFFFF"]
+    - name: "Deep Fire"
+      hex: ["#8B0000", "#DC143C", "#FF4500", "#FF8C00", "#FFA500", "#FFD700"]
+  psychedelic:
+    - name: "Plasma Tetra"
+      hex: ["#FF0066", "#FF3300", "#FF9900", "#FFFF00", "#FF00FF", "#0000FF"]
+
+art_direction:
+  aesthetic_tags:
+    - "tetrahedron"
+    - "platonic solid"
+    - "fire geometry"
+    - "self-dual polyhedron"
+    - "4-faced triangular"
+    - "sacred fire form"
+    - "Plato's fire solid"
+    - "tetrahedral crystal"
+    - "3D sacred geometry"
+  prompt_fragments:
+    - "Crystalline tetrahedron floating in space, fire element, glowing volcanic orange, sacred geometry"
+    - "Platonic solid tetrahedron, wire frame in plasma red and gold, rotating, cosmic background"
+    - "Tetrahedron Plato's fire solid, glowing edges, internal flame visible through translucent faces"
+    - "Self-dual tetrahedra nested, star tetrahedron emerging, electric sacred geometry, dark background"
+  glsl_notes: >
+    4 vertices, 4 faces (triangles). For ray-marching: SDF is intersection of 4 half-spaces.
+    Each half-space: (dot(p, normal) - offset) where normals are normalized face normals.
+    tetrahedron_sdf(p) = max(max(p.x+p.y-p.z, -p.x+p.y+p.z), max(-p.x-p.y-p.z, p.x-p.y+p.z)) - d.
+    Rotate using rotation matrix (mat3) for animation.
+    Color by face normal (dot with light direction) for basic shading.
+
+generative:
+  p5js_sketch: "sketches/p5js/tetrahedron.html"
+  shader_file: "shaders/fragment/tetrahedron.frag"
+  key_parameters:
+    edge_length: 200     # pixels
+    rotation_speed: 0.01 # radians per frame
+    show_dual: false
+    show_inscribed: false
+    color_faces: true    # color each face differently
+
+references:
+  - "Plato. Timaeus. (~360 BCE). Section on the five elements."
+  - "Euclid. Elements. Book XIII, Proposition 13."
+  - "Coxeter, H. S. M. (1973). Regular Polytopes. Dover."
+  - "Fuller, R. B. (1975). Synergetics. Macmillan."
+  - "https://en.wikipedia.org/wiki/Tetrahedron"

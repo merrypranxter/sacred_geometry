@@ -1,0 +1,180 @@
+# Vesica Piscis
+# The primordial intersection — the womb of geometry
+
+name: "Vesica Piscis"
+aliases:
+  - "Fish Bladder"
+  - "Mandorla"
+  - "Almond"
+  - "Ichthys (related)"
+  - "The Womb of Form"
+category: foundational
+subcategory: intersection
+complexity: elementary
+
+construction:
+  method: compass_and_straightedge
+  steps:
+    - step: 1
+      action: "Draw circle A with center O₁ and radius r."
+    - step: 2
+      action: "Place compass on any point on circle A's circumference. Call it O₂."
+    - step: 3
+      action: "Draw circle B with center O₂ and the same radius r."
+    - step: 4
+      action: "The two intersection points are P₁ (top) and P₂ (bottom)."
+    - step: 5
+      action: "The lens-shaped overlap region is the Vesica Piscis."
+  
+  this_creates:
+    - "Two equilateral triangles (O₁-O₂-P₁ and O₁-O₂-P₂)"
+    - "A rhombus (O₁-P₁-O₂-P₂)"
+    - "The ratio √3 (height:width of the vesica)"
+    - "The foundation for the Seed of Life, Flower of Life, and all hexagonal geometry"
+
+  key_measurements:
+    width: "r (distance between centers = distance between circles)"
+    height: "r√3"
+    height_to_width_ratio: "√3 ≈ 1.732"
+    area: "r²(2π/3 - √3/2) × 2 ≈ 1.228r²"
+    perimeter: "(4π/3)r ≈ 4.189r"
+    
+  angles:
+    equilateral_triangle_angle: 60  # degrees — O₁-P₁-O₂
+    rhombus_acute_angle: 60
+    rhombus_obtuse_angle: 120
+
+mathematics:
+  core_constant: "√3"
+  
+  key_ratio:
+    name: "Vesica ratio"
+    value: 1.7320508075688772  # √3
+    description: "Height divided by width of the vesica"
+    
+  derived_lengths:
+    height_P1_to_P2: "r√3"
+    width_O1_to_O2: "r"
+    equilateral_triangle_side: "r"
+    
+  coordinate_form:
+    O1: [0, 0]
+    O2: [1, 0]  # normalized, r = 1
+    P1: [0.5, "√3/2 ≈ 0.866"]
+    P2: [0.5, "-√3/2 ≈ -0.866"]
+    
+  properties:
+    - "Both circles have identical radius"
+    - "Center-to-center distance equals the radius"
+    - "Creates two equilateral triangles"
+    - "√3 is embedded in its proportions"
+    - "Basis for hexagonal close packing"
+    - "Found in Gothic arch construction"
+
+historical:
+  ancient_uses:
+    egypt:
+      - "Appears in architectural proportions"
+      - "Found in papyrus diagrams"
+    greece:
+      - "Pythagoras knew this form"
+      - "Used in temple proportions"
+      - "Root of the Pythagorean theorem (special case)"
+    medieval_christian:
+      - "Gothic arch is a pointed vesica"
+      - "Christ depicted within the mandorla (vesica aureole) in iconography"
+      - "Floor plans of cathedrals use vesica proportions (Chartres, Glastonbury)"
+      - "Glastonbury Abbey ground plan is a perfect vesica"
+    christian_symbol:
+      - "Ichthys (fish symbol) is a simplified vesica"
+      - "Early Christian identifier in Roman persecution era"
+  
+  etymology:
+    vesica: "Latin: bladder"
+    piscis: "Latin: fish"
+    mandorla: "Italian: almond (describes the shape)"
+
+symbolism:
+  traditions:
+    christian:
+      - "Christ in majesty, surrounded by the mandorla"
+      - "Symbol of Christ himself (ichthys)"
+      - "Portal between heaven and earth"
+      - "The divine feminine (womb of creation)"
+    pagan_pre_christian:
+      - "The sacred feminine — yoni symbolism"
+      - "Gateway, portal, threshold"
+      - "The eye of the goddess"
+    kabbalah:
+      - "Union of two circles = union of opposites"
+      - "Da'at (hidden sefirah) geometry"
+    pythagorean:
+      - "The dyad — two becoming one"
+      - "Root of the tetractys"
+    freemasonry:
+      - "Foundational symbol in lodge geometry"
+  themes:
+    - Duality unifying
+    - The womb of creation
+    - Threshold / portal
+    - The sacred feminine
+    - Union of opposites
+    - The eye of God
+    - First form from void
+
+color_palettes:
+  psychedelic:
+    - name: "Amniotic Glow"
+      hex: ["#00FFCC", "#0080FF", "#8000FF", "#FF0080", "#FF8000", "#FFFF00"]
+    - name: "Deep Yoni"
+      hex: ["#FF007F", "#CC0066", "#880044", "#440022", "#FF66AA", "#FFCCDD"]
+    - name: "Portal Shimmer"
+      hex: ["#CCFF00", "#00FFAA", "#00AAFF", "#AA00FF", "#FF00AA", "#FFFFFF"]
+  traditional:
+    - name: "Ichthys Blue"
+      hex: ["#003087", "#0047AB", "#4169E1", "#6495ED", "#B0C4DE", "#FFFFFF"]
+    - name: "Cathedral Gold"
+      hex: ["#8B6914", "#DAA520", "#FFD700", "#FFFACD", "#FFF8DC", "#FFFFFF"]
+
+art_direction:
+  aesthetic_tags:
+    - "vesica piscis"
+    - "mandorla"
+    - "sacred feminine geometry"
+    - "primordial intersection"
+    - "womb of creation"
+    - "two circles overlapping"
+    - "geometric portal"
+    - "eye of god"
+    - "almond shape sacred"
+    - "Gothic arch geometry"
+  prompt_fragments:
+    - "Vesica Piscis mandorla, glowing sacred feminine, iridescent almond portal, divine geometry"
+    - "Two overlapping circles forming vesica piscis, neon cyan and magenta, glowing intersection, cosmic womb"
+    - "Mandorla sacred geometry, medieval illuminated manuscript style, gold leaf on deep blue, Christ figure optional"
+    - "Vesica Piscis as interdimensional portal, electric plasma, deep space backdrop, √3 ratio visible"
+    - "Vesica piscis and Flower of Life genesis, step-by-step emergence animation, psychedelic color progression"
+  glsl_notes: >
+    Two circles of radius r, centers at (-r/2, 0) and (r/2, 0).
+    SDF: min(length(uv - center1), length(uv - center2)) - r.
+    Vesica region: both SDFs negative simultaneously.
+    Animate by pulsing intersection region brightness.
+    Color interior by polar angle relative to intersection midpoint.
+
+generative:
+  p5js_sketch: "sketches/p5js/vesica_piscis.html"
+  shader_file: "shaders/fragment/vesica_piscis.frag"
+  svg_generator: "svg/generators/vesica_piscis.js"
+  key_parameters:
+    r: 100             # circle radius in pixels
+    show_circles: true
+    show_vesica: true
+    show_triangles: true
+    show_rhombus: false
+    animate: true
+
+references:
+  - "Lawlor, R. (1982). Sacred Geometry: Philosophy and Practice. Thames & Hudson."
+  - "Michell, J. (1988). The Dimensions of Paradise. Harper & Row."
+  - "Critchlow, K. (1976). Islamic Patterns. Thames & Hudson."
+  - "https://en.wikipedia.org/wiki/Vesica_piscis"

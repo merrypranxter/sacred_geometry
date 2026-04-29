@@ -1,0 +1,152 @@
+# Master Color Palettes — Sacred Geometry
+# Curated psychedelic + traditional palettes for generative sacred geometry art
+
+name: "Sacred Geometry Color Palettes"
+version: "1.0"
+
+psychedelic:
+
+  ultraviolet_bloom:
+    name: "Ultraviolet Bloom"
+    description: "Hot magenta to deep violet with acid green accents"
+    hex: ["#FF00FF", "#DD00DD", "#9400D3", "#6600CC", "#4B0082", "#7FFF00"]
+    hsl_range: "270–300° primary, 90° accent"
+    best_for: ["Flower of Life", "Metatron's Cube", "Mandala"]
+
+  bioluminescent_grid:
+    name: "Bioluminescent Grid"
+    description: "Deep sea / mycelium light — cyan, aqua, electric green"
+    hex: ["#00FF7F", "#00FFCC", "#00FFFF", "#0080FF", "#4000FF", "#FF007F"]
+    hsl_range: "150–210° primary"
+    best_for: ["Flower of Life", "Torus", "Spiral"]
+
+  solar_plasma:
+    name: "Solar Plasma"
+    description: "CME / solar flare energy — reds, oranges, golds, white hot"
+    hex: ["#FF2200", "#FF4500", "#FF8C00", "#FFD700", "#FFFF00", "#FFFFFF"]
+    hsl_range: "0–60°"
+    best_for: ["Tetrahedron", "Merkaba", "Sri Yantra"]
+
+  void_bloom:
+    name: "Void Bloom"
+    description: "Deep space — midnight blues with pale starlight accents"
+    hex: ["#000011", "#000033", "#000080", "#0000FF", "#4169E1", "#E0E8FF"]
+    hsl_range: "220–240°"
+    best_for: ["Metatron's Cube", "Torus", "Platonic Solids"]
+
+  tantric_fire:
+    name: "Tantric Fire"
+    description: "Shakti energy — red, orange, hot pink, violet, deep red"
+    hex: ["#8B0000", "#DC143C", "#FF1493", "#FF4500", "#FF00FF", "#9400D3"]
+    best_for: ["Sri Yantra", "Merkaba", "Flower of Life"]
+
+  aurora_spiral:
+    name: "Aurora Borealis"
+    description: "Northern lights — sweeping greens, teals, violets"
+    hex: ["#00FF7F", "#00FFCC", "#00AAFF", "#5500FF", "#AA00FF", "#FF00AA"]
+    hsl_range: "150–300° sweeping"
+    best_for: ["Golden Spiral", "Torus", "Flower of Life"]
+
+  dimensional_pull:
+    name: "Dimensional Pull"
+    description: "Infinite zoom aesthetic — dark to bright violet funnel"
+    hex: ["#000000", "#12001F", "#300050", "#6600CC", "#AA44FF", "#FFFFFF"]
+    best_for: ["Golden Spiral", "Metatron's Cube"]
+
+  acid_chromatic:
+    name: "Acid Chromatic"
+    description: "Full spectrum, maximum saturation — pure hue wheel"
+    hex: ["#FF0000", "#FF8800", "#FFFF00", "#00FF00", "#0088FF", "#FF00FF"]
+    note: "All hues at full saturation 100% brightness"
+    best_for: ["Flower of Life (interference zones)", "Mandala"]
+
+  fungal_iridescence:
+    name: "Fungal Iridescence"
+    description: "Oyster mushroom / beetle-shell iridescence — blue-greens and silvers"
+    hex: ["#1A3A4A", "#2E6B7E", "#4ECDC4", "#A8E6CF", "#C7ECEE", "#EFFFFF"]
+    best_for: ["Torus", "Vesica Piscis", "Spiral"]
+
+  lisa_frank_divine:
+    name: "Lisa Frank Divine"
+    description: "90s maximalist neon — hot pink, turquoise, yellow, purple"
+    hex: ["#FF1493", "#FF69B4", "#FFD700", "#00CED1", "#9400D3", "#7FFF00"]
+    best_for: ["Flower of Life", "Mandala", "Golden Spiral"]
+
+  glitch_sacred:
+    name: "Glitch Sacred"
+    description: "RGB channel shift — red/green/blue misalignment aesthetic"
+    hex: ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"]
+    usage_note: "Use with slight positional offsets per channel for glitch effect"
+    best_for: ["All forms — apply as channel-shifted overlay"]
+
+traditional:
+
+  sacred_gold:
+    name: "Sacred Gold"
+    description: "Classical gold on black — icon painting, temple"
+    hex: ["#000000", "#2C1810", "#8B6914", "#DAA520", "#FFD700", "#FFF8DC"]
+    best_for: ["All forms"]
+
+  temple_stone:
+    name: "Temple Stone"
+    description: "Sandstone, marble, weathered sacred — warm neutrals"
+    hex: ["#E8D5B0", "#D2B48C", "#C19A6B", "#8B7355", "#6B4226", "#3D2B1F"]
+
+  lapis_and_gold:
+    name: "Lapis and Gold"
+    description: "Medieval illuminated manuscript — ultramarine and gold leaf"
+    hex: ["#1A1A5E", "#003399", "#0047AB", "#AAAAFF", "#FFD700", "#FFF8DC"]
+    best_for: ["Metatron's Cube", "Tree of Life"]
+
+  kumkum_red:
+    name: "Kumkum Red"
+    description: "Tantric red vermillion — Hindu puja aesthetic"
+    hex: ["#8B0000", "#B22222", "#DC143C", "#FF6347", "#FFD700", "#FFFFF0"]
+    best_for: ["Sri Yantra", "Merkaba"]
+
+  emerald_tablet:
+    name: "Emerald Tablet"
+    description: "Hermetic green on black — alchemical dark arts"
+    hex: ["#000000", "#001A00", "#003300", "#006600", "#00CC00", "#00FF66"]
+    best_for: ["Tree of Life", "Metatron's Cube"]
+
+  celestial_blue:
+    name: "Celestial Blue"
+    description: "Byzantine / Islamic blue — lapis, cerulean, sky"
+    hex: ["#000033", "#003087", "#0047AB", "#4169E1", "#87CEEB", "#E0F0FF"]
+
+glsl_gradient_functions:
+  description: "GLSL code snippets for applying these palettes in shaders"
+  
+  hue_cycle: |
+    // Full hue cycle — maps 0-1 to full rainbow
+    vec3 hueCycle(float t) {
+      t = fract(t); // wrap
+      return 0.5 + 0.5 * cos(6.28318 * (t + vec3(0.0, 0.333, 0.667)));
+    }
+    
+  bioluminescent: |
+    // Bioluminescent palette — green to cyan to blue
+    vec3 biolumin(float t) {
+      t = clamp(t, 0.0, 1.0);
+      return mix(
+        mix(vec3(0.0, 1.0, 0.5), vec3(0.0, 1.0, 1.0), t),
+        mix(vec3(0.0, 1.0, 1.0), vec3(0.0, 0.5, 1.0), t * t),
+        t
+      );
+    }
+    
+  tantric_fire: |
+    // Tantric fire — black to red to orange to white
+    vec3 tantricFire(float t) {
+      t = clamp(t, 0.0, 1.0);
+      if (t < 0.33) return mix(vec3(0.0), vec3(1.0, 0.0, 0.0), t * 3.0);
+      if (t < 0.66) return mix(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.5, 0.0), (t - 0.33) * 3.0);
+      return mix(vec3(1.0, 0.5, 0.0), vec3(1.0, 1.0, 0.9), (t - 0.66) * 3.0);
+    }
+    
+  void_bloom_glsl: |
+    // Void Bloom — black to midnight blue to electric blue
+    vec3 voidBloom(float t) {
+      return pow(vec3(0.0, 0.0, 1.0) * t, vec3(0.5)) * vec3(0.3, 0.5, 1.0);
+    }

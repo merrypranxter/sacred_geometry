@@ -1,0 +1,36 @@
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# Output files
+svg/output/*.svg
+*.generated.svg
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/

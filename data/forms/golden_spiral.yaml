@@ -1,0 +1,201 @@
+# Golden Spiral / Logarithmic Spiral
+# Nature's favorite curve — the shape of growth itself
+
+name: "Golden Spiral"
+aliases:
+  - "Fibonacci Spiral"
+  - "Divine Spiral"
+  - "Logarithmic Spiral (φ-based)"
+  - "Equiangular Spiral"
+category: spiral
+subcategory: logarithmic
+complexity: intermediate
+
+construction:
+  method: both
+  
+  fibonacci_approximation:
+    description: >
+      Draw squares with side lengths equal to Fibonacci numbers (1, 1, 2, 3, 5, 8, 13, ...).
+      Stack them in a specific pattern. Draw quarter-circle arcs through each square.
+      This approximates (but does not exactly equal) the true golden spiral.
+    steps:
+      - step: 1
+        action: "Draw a 1×1 square. Adjacent to it, draw another 1×1 square."
+      - step: 2
+        action: "Below both, draw a 2×2 square."
+      - step: 3
+        action: "To the right, draw a 3×3 square."
+      - step: 4
+        action: "Above, draw a 5×5 square. Continue in rotational pattern."
+      - step: 5
+        action: "In each square, draw a quarter-circle from corner to corner."
+      - step: 6
+        action: "The connected arcs approximate a golden spiral."
+    note: "This is an approximation — the true golden spiral is smooth and continuous."
+    
+  exact_form:
+    equation_polar: "r = ae^(bθ)"
+    where:
+      a: "Scale factor (initial radius)"
+      b: "ln(φ) / (π/2) ≈ 0.3063489... (the growth rate per quarter turn)"
+      theta: "Angle in radians"
+      phi: 1.6180339887498948482
+    growth_factor: "φ per quarter turn (90°)"
+    growth_factor_per_full_turn: "φ⁴ ≈ 6.854 per full rotation"
+    
+  compass_construction:
+    description: "Create golden rectangles, spiral through them"
+    golden_rectangle:
+      definition: "Rectangle with width:height ratio = φ:1"
+      construction: "Start with square, find midpoint of one side, draw arc to find φ"
+      subdivision: "Removing a square from a golden rectangle leaves another golden rectangle"
+
+mathematics:
+  core_constant: "φ (Golden Ratio)"
+  
+  polar_equation:
+    form: "r = ae^(bθ)"
+    b_exact: "ln(φ)/(π/2)"
+    b_value: 0.30634896...
+    
+  key_property: "Self-similar at all scales"
+  
+  growth_rates:
+    per_90_degrees: "φ ≈ 1.618"
+    per_180_degrees: "φ² ≈ 2.618"
+    per_270_degrees: "φ³ ≈ 4.236"
+    per_360_degrees: "φ⁴ ≈ 6.854"
+    
+  angle_property: >
+    The tangent to the spiral always makes the same angle with the radius vector.
+    For the golden spiral, this angle ≈ 72.97°.
+    This is why it's called "equiangular spiral."
+    
+  fibonacci_convergence: >
+    The ratio of consecutive Fibonacci numbers (F(n+1)/F(n)) converges to φ.
+    The Fibonacci spiral converges to the golden spiral as squares grow larger.
+    
+  pole: >
+    The spiral winds around but never reaches its central point (the pole).
+    It approaches the pole asymptotically as θ → -∞.
+    This represents infinite self-similarity at infinitely small scales.
+
+occurrences_in_nature:
+  plants:
+    - "Sunflower seed spirals (55 and 89 — Fibonacci numbers)"
+    - "Pinecone spirals (8 and 13)"
+    - "Romanesco broccoli fractal spirals"
+    - "Leaf phyllotaxis (137.5° golden angle between leaves)"
+    - "Nautilus shell cross-section (approximate — not exact golden spiral)"
+    - "Ferns — new fronds unfurl in spiral"
+  animals:
+    - "Nautilus shell (approximate)"
+    - "Ram's horn curl"
+    - "Chameleon tail"
+    - "Galaxy arms (approximate)"
+    - "Hurricane spirals"
+    - "Elephant tusk curve"
+  human_body:
+    - "DNA double helix proportions"
+    - "Cochlea of inner ear"
+    - "Proportion of face features (contested)"
+  cosmos:
+    - "Spiral galaxy arms (logarithmic, not necessarily golden)"
+    - "Meteor tail curves"
+    
+  important_caveat: >
+    Many claims about the golden ratio in nature and art are overstated or false.
+    The nautilus shell, for instance, is NOT a perfect golden spiral — it's a
+    logarithmic spiral but with a different growth factor. Be precise: say
+    "logarithmic" or "approximate golden" rather than claiming exact φ everywhere.
+
+historical:
+  earliest_study: "Archimedes studied the Archimedean spiral (different type)"
+  named_by: "Descartes and Torricelli (17th century) for logarithmic spiral"
+  golden_connection: "Directly related to φ — appeared in Euclid's 'Elements' (Book VI)"
+  art_use:
+    - "Renaissance compositional tool (disputed accuracy)"
+    - "Le Corbusier's Modulor system (1948)"
+    - "Hokusai's Great Wave (compositional spiral)"
+
+symbolism:
+  traditions:
+    universal:
+      - "Growth and expansion"
+      - "Evolution over time"
+      - "The path of least resistance"
+      - "Infinite self-reference"
+    sacred:
+      - "The descent of spirit into matter"
+      - "The ascent of consciousness"
+      - "The cosmic dance of Shiva"
+      - "Kundalini rising (serpent spiral)"
+    celtic:
+      - "Triskelion — triple spiral"
+      - "Newgrange spiral carvings"
+      - "The passage of souls"
+  themes:
+    - Eternal growth
+    - Self-similarity across scales
+    - The divine proportion
+    - Time and evolution
+    - The path of life
+
+color_palettes:
+  psychedelic:
+    - name: "Aurora Spiral"
+      hex: ["#00FF7F", "#00FFFF", "#007FFF", "#7F00FF", "#FF007F", "#FF7F00"]
+    - name: "Dimensional Pull"
+      hex: ["#000000", "#1A0030", "#4B0082", "#9400D3", "#FF00FF", "#FFFFFF"]
+    - name: "Golden Flame"
+      hex: ["#FFD700", "#FF8C00", "#FF4500", "#DC143C", "#8B0000", "#000000"]
+  traditional:
+    - name: "Natural Gold"
+      hex: ["#F5F5DC", "#DEB887", "#D2691E", "#A0522D", "#8B4513", "#3D1C02"]
+
+art_direction:
+  aesthetic_tags:
+    - "golden spiral"
+    - "logarithmic spiral"
+    - "fibonacci spiral"
+    - "phi ratio curve"
+    - "divine proportion spiral"
+    - "nautilus geometry"
+    - "growth spiral"
+    - "golden rectangle subdivision"
+    - "equiangular spiral"
+    - "self-similar curve"
+  prompt_fragments:
+    - "Golden spiral mandala, φ-based logarithmic curve, neon gradient from center, psychedelic glow"
+    - "Fibonacci golden spiral, infinite zoom, self-similar recursion, crystalline iridescent"
+    - "Golden ratio spiral on cosmic background, glowing φ geometry, mathematical divinity"
+    - "Multiple overlapping golden spirals forming a mandala, rainbow interference patterns"
+    - "Golden spiral as kundalini energy, serpentine divine proportion, tantric maximalist"
+  glsl_notes: >
+    Polar coordinates: r = exp(b * theta) where b = ln(phi)/(pi/2).
+    In fragment shader: convert uv to polar (r, theta), check if log(r)/b mod (2π) ≈ theta.
+    For spiral band: abs(fract(log(length(uv)) / log(phi^4)) - 0.5) < thickness.
+    Animate: add time to theta offset for spinning spiral.
+    Layer multiple spirals with different phase offsets for interference patterns.
+
+generative:
+  p5js_sketch: "sketches/p5js/golden_spiral.html"
+  shader_file: "shaders/fragment/golden_spiral.frag"
+  svg_generator: "svg/generators/golden_spiral.js"
+  key_parameters:
+    turns: 6              # number of full rotations
+    a: 1.0               # scale factor
+    b: 0.30634896        # ln(phi)/(pi/2)
+    show_rectangles: true  # show the golden rectangle subdivision
+    show_fibonacci: false  # show Fibonacci square approximation
+    animate: true
+    animation_type: "grow"  # grow | spin | zoom
+
+references:
+  - "Livio, M. (2002). The Golden Ratio. Broadway Books."
+  - "Hambidge, J. (1920). Dynamic Symmetry. Yale University Press."
+  - "Thompson, D. W. (1917). On Growth and Form. Cambridge University Press."
+  - "Azose, J. J. & Raftery, A. E. (2014). Mathematical notes on spirals."
+  - "https://en.wikipedia.org/wiki/Golden_spiral"
+  - "Falcón, S. & Plaza, Á. (2007). The k-Fibonacci sequence."

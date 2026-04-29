@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Golden Spiral — Sacred Geometry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#000; display:flex; flex-direction:column; align-items:center; font-family:'Courier New',monospace; color:#FFD700; }
+    #controls { display:flex; gap:10px; padding:10px; flex-wrap:wrap; justify-content:center; }
+    button, select { background:#0A0800; border:1px solid #FFD700; color:#FFD700; padding:5px 12px; cursor:pointer; font-family:monospace; font-size:11px; }
+    button:hover, select:hover { background:#FFD70022; }
+    label { font-size:11px; display:flex; align-items:center; gap:6px; }
+    input[type=range] { width:70px; accent-color:#FFD700; }
+    #info { font-size:9px; opacity:0.4; padding:4px; text-align:center; }
+  </style>
+</head>
+<body>
+<div id="controls">
+  <label>Arms: <input type="range" id="arms" min="1" max="8" value="1" step="1"><span id="arms-v">1</span></label>
+  <label>Turns: <input type="range" id="turns" min="2" max="10" value="6" step="1"><span id="turns-v">6</span></label>
+  <label>Speed: <input type="range" id="speed" min="0" max="3" value="0.5" step="0.1"><span id="spd-v">0.5</span></label>
+  <select id="mode">
+    <option value="spiral">SPIRAL ONLY</option>
+    <option value="rects">GOLDEN RECTS</option>
+    <option value="both">BOTH</option>
+    <option value="phyllotaxis">PHYLLOTAXIS</option>
+  </select>
+  <select id="colorMode">
+    <option value="rainbow">RAINBOW</option>
+    <option value="gold">GOLD FLAME</option>
+    <option value="aurora">AURORA</option>
+    <option value="void">VOID</option>
+  </select>
+  <button id="toggleAnim">⏸ PAUSE</button>
+</div>
+
+<script>
+new p5(function(p) {
+  const PHI = 1.6180339887;
+  const LN_PHI = Math.log(PHI);
+  const B = LN_PHI / (Math.PI / 2);  // golden spiral growth rate
+
+  let t = 0;
+  let speed = 0.5;
+  let arms = 1;
+  let turns = 6;
+  let mode = 'spiral';
+  let colorMode = 'rainbow';
+  let animating = true;
+
+  function goldenSpiralPoint(a, theta) {
+    const r = a * Math.exp(B * theta);
+    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
+  }
+
+  function hueToRGB(h) {
+    return p.color(`hsl(${Math.round(h * 360)},90%,60%)`);
+  }
+
+  function spiralColor(theta, dist, mode_) {
+    switch(mode_) {
+      case 'rainbow': return hueToRGB((theta / (Math.PI * 2) * 0.5 + dist * 0.3 + t * 0.1) % 1);
+      case 'gold': {
+        const logD = Math.log(Math.max(dist, 1)) * 0.3;
+        return p.color(`hsl(${Math.round(40 + logD * 10)},90%,60%)`);
+      }
+      case 'aurora': return hueToRGB((0.4 + dist * 0.5 + t * 0.08) % 1);
+      case 'void': return hueToRGB((0.55 + dist * 0.2 + t * 0.05) % 1);
+    }
+    return p.color(255);
+  }
+
+  p.setup = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    const cv = p.createCanvas(sz, sz);
+    cv.parent('sketch-container');
+
+    // Controls
+    ['arms','turns','speed'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        if (id === 'arms') arms = parseInt(this.value);
+        if (id === 'turns') turns = parseInt(this.value);
+        if (id === 'speed') speed = parseFloat(this.value);
+        document.getElementById(`${id}-v`).textContent = this.value;
+      });
+    });
+    document.getElementById('mode').addEventListener('change', e => mode = e.target.value);
+    document.getElementById('colorMode').addEventListener('change', e => colorMode = e.target.value);
+    document.getElementById('toggleAnim').addEventListener('click', function() {
+      animating = !animating;
+      this.textContent = animating ? '⏸ PAUSE' : '▶ PLAY';
+    });
+  };
+
+  p.draw = function() {
+    p.background(0, 0, 0, 20);
+    p.translate(p.width / 2, p.height / 2);
+
+    if (animating) t += 0.008 * speed;
+
+    const a = p.width * 0.018;  // scale: spiral starts small
+    const maxTheta = turns * Math.PI * 2;
+    const steps = turns * 120;
+
+    if (mode === 'phyllotaxis') {
+      // Sunflower / golden angle point cloud
+      const N = 500 + turns * 50;
+      const c = p.width * 0.012;  // scale
+      p.noStroke();
+      for (let i = 0; i < N; i++) {
+        const theta = i * 2.39996323;  // golden angle in radians
+        const r_ = c * Math.sqrt(i);
+        const x = r_ * Math.cos(theta + t * 0.2);
+        const y = r_ * Math.sin(theta + t * 0.2);
+        const sz_ = 3 + 2 * Math.sin(t * 3 + i * 0.1);
+        const hue = (i / N + t * 0.1) % 1;
+        p.fill(p.color(`hsl(${Math.round(hue * 360)},80%,65%)`));
+        p.circle(x, y, sz_);
+      }
+      // Golden angle label
+      p.fill(255, 215, 0, 100);
+      p.noStroke();
+      p.textSize(9);
+      p.textAlign(p.CENTER);
+      p.text('GOLDEN ANGLE = 137.508° = 360°/φ²', 0, p.height/2 - 20);
+      return;
+    }
+
+    // ── Golden rectangles ─────────────────────────────────────────
+    if (mode === 'rects' || mode === 'both') {
+      p.noFill();
+      p.strokeWeight(0.5);
+      // Draw Fibonacci square sequence
+      let sx = 0, sy = 0;  // current position
+      let sw = a * 8;       // starting square size (start large)
+      const dirs = [[1,0],[0,-1],[-1,0],[0,1]];  // rotation order
+      let rx = 0, ry = 0, rw = sw, rh = sw;
+      for (let i = 0; i < Math.min(turns, 8); i++) {
+        const hue = (i / 8 + t * 0.05) % 1;
+        p.stroke(p.color(`hsl(${Math.round(hue * 360)},70%,50%,0.6)`));
+        p.rect(rx, ry, rw, rh);
+        // Extend in fibonacci pattern
+        const newSize = rw + rh;
+        // This is simplified — full golden rect subdivision is complex
+      }
+    }
+
+    // ── Spiral arms ───────────────────────────────────────────────
+    if (mode === 'spiral' || mode === 'both') {
+      for (let arm = 0; arm < arms; arm++) {
+        const armOffset = (arm / arms) * Math.PI * 2;
+
+        p.beginShape();
+        p.noFill();
+
+        let prevPt = null;
+        for (let s = 0; s <= steps; s++) {
+          const theta = (s / steps) * maxTheta - t * 0.5;
+          const pt = goldenSpiralPoint(a, theta + armOffset);
+
+          // Bounds check
+          if (Math.abs(pt.x) > p.width || Math.abs(pt.y) > p.height) continue;
+
+          const dist = Math.sqrt(pt.x * pt.x + pt.y * pt.y);
+          const col = spiralColor(theta, dist, colorMode);
+
+          // Line weight grows with distance from center (thicker outer)
+          const lw = 0.4 + (dist / (p.width * 0.4)) * 1.5;
+
+          if (prevPt) {
+            p.strokeWeight(lw);
+            // Glow: draw twice
+            p.stroke(p.red(col), p.green(col), p.blue(col), 50);
+            p.strokeWeight(lw * 4);
+            p.line(prevPt.x, prevPt.y, pt.x, pt.y);
+            p.stroke(p.red(col), p.green(col), p.blue(col), 200);
+            p.strokeWeight(lw);
+            p.line(prevPt.x, prevPt.y, pt.x, pt.y);
+          }
+          prevPt = pt;
+        }
+      }
+    }
+
+    // ── φ ratio markers ────────────────────────────────────────────
+    // Show circles at radii that are powers of φ
+    p.noFill();
+    for (let i = -2; i <= turns; i++) {
+      const markerR = a * Math.pow(PHI, i * 2);
+      if (markerR > p.width) break;
+      const alpha = 20 + 10 * Math.sin(t + i);
+      p.stroke(255, 215, 0, alpha);
+      p.strokeWeight(0.4);
+      p.circle(0, 0, markerR * 2);
+    }
+
+    // ── Bindu ─────────────────────────────────────────────────────
+    p.noStroke();
+    const pulse = 2 + Math.sin(t * 4) * 1.5;
+    p.fill(255, 215, 0, 200);
+    p.circle(0, 0, pulse);
+
+    // ── Labels ────────────────────────────────────────────────────
+    p.fill(255, 215, 0, 80);
+    p.noStroke();
+    p.textSize(9);
+    p.textAlign(p.LEFT);
+    p.text(`r = a·e^(${B.toFixed(5)}θ)`, -p.width/2 + 10, p.height/2 - 30);
+    p.text(`b = ln(φ)/(π/2) = ${B.toFixed(5)}`, -p.width/2 + 10, p.height/2 - 18);
+    p.text(`φ = ${PHI.toFixed(10)}`, -p.width/2 + 10, p.height/2 - 6);
+  };
+
+  p.windowResized = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    p.resizeCanvas(sz, sz);
+  };
+});
+
+const container = document.createElement('div');
+container.id = 'sketch-container';
+document.body.insertBefore(container, document.querySelector('#controls'));
+document.body.appendChild(document.getElementById('controls'));
+</script>
+
+<div id="info">GOLDEN SPIRAL — r = a·e^(bθ) where b = ln(φ)/(π/2) ≈ 0.30635 — growth factor per 90°: φ = 1.61803...</div>
+</body>
+</html>

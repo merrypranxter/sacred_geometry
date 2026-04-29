@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Torus — Sacred Geometry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#000; display:flex; flex-direction:column; align-items:center; font-family:'Courier New',monospace; color:#00FFCC; }
+    #controls { display:flex; gap:10px; padding:10px; flex-wrap:wrap; justify-content:center; }
+    button, select { background:#001A15; border:1px solid #00FFCC; color:#00FFCC; padding:5px 12px; cursor:pointer; font-family:monospace; font-size:11px; }
+    button:hover, select:hover { background:#00FFCC22; }
+    label { font-size:11px; display:flex; align-items:center; gap:6px; }
+    input[type=range] { width:70px; accent-color:#00FFCC; }
+    #info { font-size:9px; opacity:0.4; padding:4px; text-align:center; }
+  </style>
+</head>
+<body>
+<div id="controls">
+  <label>Major R: <input type="range" id="majorR" min="80" max="200" value="130" step="5"><span id="mr-v">130</span></label>
+  <label>Minor r: <input type="range" id="minorR" min="20" max="80" value="45" step="5"><span id="nr-v">45</span></label>
+  <label>Speed: <input type="range" id="speed" min="0" max="3" value="1" step="0.1"><span id="spd-v">1.0</span></label>
+  <select id="colorMode">
+    <option value="plasma">PLASMA FIELD</option>
+    <option value="biolum">BIOLUMINESCENT</option>
+    <option value="solar">SOLAR VORTEX</option>
+    <option value="void">VOID BLUE</option>
+  </select>
+  <select id="view">
+    <option value="top">TOP VIEW</option>
+    <option value="side">SIDE VIEW</option>
+    <option value="iso">ISOMETRIC</option>
+  </select>
+  <button id="toggleAnim">⏸ PAUSE</button>
+</div>
+
+<script>
+new p5(function(p) {
+  const PHI = 1.6180339887;
+  let R = 130, r = 45;
+  let t = 0, speed = 1;
+  let animating = true;
+  let colorMode = 'plasma';
+  let view = 'top';
+
+  const U_STEPS = 60;  // toroidal steps
+  const V_STEPS = 30;  // poloidal steps
+
+  // 3D → 2D projection
+  function project(x, y, z, view_) {
+    if (view_ === 'top') {
+      return { x, y: z * 0.6 };
+    } else if (view_ === 'side') {
+      return { x, y };
+    } else {
+      // Isometric-ish
+      const isoX = x * 0.866 - z * 0.866;
+      const isoY = -y + (x + z) * 0.5 * 0.5;
+      return { x: isoX, y: isoY };
+    }
+  }
+
+  // Torus point at angles u (toroidal), v (poloidal)
+  function torusPoint(u, v, R_, r_) {
+    const x = (R_ + r_ * Math.cos(v)) * Math.cos(u);
+    const y = r_ * Math.sin(v);
+    const z = (R_ + r_ * Math.cos(v)) * Math.sin(u);
+    return { x, y, z };
+  }
+
+  function getColor(u, v, mode) {
+    const h = {
+      plasma: (u / (Math.PI * 2) + v / (Math.PI * 2) * 0.3 + t * 0.1) % 1,
+      biolum: (0.4 + u / (Math.PI * 2) * 0.3 + t * 0.08) % 1,
+      solar:  (0.05 + v / (Math.PI * 2) * 0.3 + t * 0.12) % 1,
+      void:   (0.55 + u / (Math.PI * 2) * 0.2 + t * 0.06) % 1,
+    }[mode];
+    return p.color(`hsl(${Math.round(h * 360)},90%,60%)`);
+  }
+
+  p.setup = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    const cv = p.createCanvas(sz, sz);
+    cv.parent('sketch-container');
+
+    ['majorR','minorR','speed'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        if (id === 'majorR') R = parseInt(this.value);
+        if (id === 'minorR') r = parseInt(this.value);
+        if (id === 'speed') speed = parseFloat(this.value);
+        document.getElementById(`${id.replace('ajor','r-').replace('inor','r-').replace('peed','pd-').replace('R','')}-v`).textContent = this.value;
+      });
+    });
+    // Fix awkward key names
+    document.getElementById('majorR').addEventListener('input', function() { document.getElementById('mr-v').textContent = this.value; });
+    document.getElementById('minorR').addEventListener('input', function() { document.getElementById('nr-v').textContent = this.value; });
+    document.getElementById('speed').addEventListener('input', function() { document.getElementById('spd-v').textContent = parseFloat(this.value).toFixed(1); });
+    document.getElementById('colorMode').addEventListener('change', e => colorMode = e.target.value);
+    document.getElementById('view').addEventListener('change', e => view = e.target.value);
+    document.getElementById('toggleAnim').addEventListener('click', function() {
+      animating = !animating;
+      this.textContent = animating ? '⏸ PAUSE' : '▶ PLAY';
+    });
+  };
+
+  p.draw = function() {
+    p.background(0, 0, 0, 25);
+    p.translate(p.width / 2, p.height / 2);
+
+    if (animating) t += 0.012 * speed;
+
+    // ── Draw torus wireframe ───────────────────────────────────────
+    // Sort faces by depth for painter's algorithm
+    const faces = [];
+    for (let ui = 0; ui < U_STEPS; ui++) {
+      for (let vi = 0; vi < V_STEPS; vi++) {
+        const u = (ui / U_STEPS) * Math.PI * 2 + t * 0.3;
+        const v = (vi / V_STEPS) * Math.PI * 2;
+        const pt = torusPoint(u, v, R, r);
+        const proj = project(pt.x, pt.y, pt.z, view);
+        faces.push({ proj, u, v, depth: pt.z + pt.x * 0.5 });
+      }
+    }
+
+    // ── Toroidal lines (around the large circle) ──────────────────
+    p.strokeWeight(0.6);
+    for (let vi = 0; vi < V_STEPS; vi++) {
+      const v = (vi / V_STEPS) * Math.PI * 2;
+      let prev = null;
+      for (let ui = 0; ui <= U_STEPS; ui++) {
+        const u = (ui / U_STEPS) * Math.PI * 2 + t * 0.3;
+        const pt = torusPoint(u, v, R, r);
+        const proj = project(pt.x, pt.y, pt.z, view);
+
+        // Depth-based alpha (far side dimmer)
+        const depthAlpha = view === 'top'
+          ? 80 + 120 * (0.5 + 0.5 * Math.sin(u - t * 0.3))
+          : 80 + 120 * (0.5 + 0.5 * Math.sin(pt.z / R));
+
+        const col = getColor(u, v, colorMode);
+        p.stroke(p.red(col), p.green(col), p.blue(col), depthAlpha);
+
+        if (prev) {
+          p.line(prev.x, prev.y, proj.x, proj.y);
+        }
+        prev = proj;
+      }
+    }
+
+    // ── Poloidal lines (around the tube) ──────────────────────────
+    p.strokeWeight(0.8);
+    const poloidalCount = 16;
+    for (let ui = 0; ui < poloidalCount; ui++) {
+      const u = (ui / poloidalCount) * Math.PI * 2 + t * 0.3;
+      let prev = null;
+      for (let vi = 0; vi <= V_STEPS * 2; vi++) {
+        const v = (vi / (V_STEPS * 2)) * Math.PI * 2;
+        const pt = torusPoint(u, v, R, r);
+        const proj = project(pt.x, pt.y, pt.z, view);
+
+        const depthAlpha = view === 'top'
+          ? 100 + 100 * (0.5 + 0.5 * Math.sin(u))
+          : 80 + 120 * (0.5 + 0.5 * (pt.z / R));
+
+        const col = getColor(u, v, colorMode);
+        // Poloidal lines are brighter
+        p.stroke(
+          Math.min(p.red(col) + 40, 255),
+          Math.min(p.green(col) + 40, 255),
+          Math.min(p.blue(col) + 40, 255),
+          depthAlpha
+        );
+
+        if (prev) {
+          p.line(prev.x, prev.y, proj.x, proj.y);
+        }
+        prev = proj;
+      }
+    }
+
+    // ── Center vortex point ───────────────────────────────────────
+    p.noStroke();
+    const cx = project(0, 0, 0, view);
+    const pulse = 4 + 3 * Math.sin(t * 3);
+    p.fill(255, 255, 255, 180);
+    p.circle(cx.x, cx.y, pulse);
+
+    // ── Labels ────────────────────────────────────────────────────
+    p.fill(0, 255, 204, 60);
+    p.noStroke();
+    p.textSize(9);
+    p.textAlign(p.LEFT);
+    p.text(`R = ${R}px (major)`, -p.width/2 + 10, p.height/2 - 30);
+    p.text(`r = ${r}px (minor)`, -p.width/2 + 10, p.height/2 - 18);
+    p.text(`Volume = 2π²Rr²`, -p.width/2 + 10, p.height/2 - 6);
+  };
+
+  p.windowResized = function() {
+    const sz = Math.min(p.windowWidth, p.windowHeight, 700);
+    p.resizeCanvas(sz, sz);
+  };
+});
+
+const container = document.createElement('div');
+container.id = 'sketch-container';
+document.body.insertBefore(container, document.querySelector('#controls'));
+document.body.appendChild(document.getElementById('controls'));
+</script>
+
+<div id="info">TORUS — Surface of revolution. Volume = 2π²Rr² | Surface area = 4π²Rr | Genus = 1 (one hole)</div>
+</body>
+</html>

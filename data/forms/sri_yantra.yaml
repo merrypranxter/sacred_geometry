@@ -1,0 +1,232 @@
+# Sri Yantra / Sri Chakra
+# The most complex and revered yantra in Tantric Hinduism
+
+name: "Sri Yantra"
+aliases:
+  - "Sri Chakra"
+  - "Shri Yantra"
+  - "Navayoni Chakra"
+  - "The Queen of Yantras"
+category: complex
+subcategory: triangular_mandala
+complexity: expert
+tradition: "Tantric Hinduism / Shaktism"
+
+construction:
+  method: algorithmic  # Cannot be exactly constructed with compass & straightedge alone
+  difficulty: "Extreme — precise angle calculation required"
+  
+  overview: >
+    The Sri Yantra consists of nine interlocking triangles arranged around a central
+    point (bindu). Five triangles point downward (Shakti/feminine) and four point
+    upward (Shiva/masculine). Their intersections create exactly 43 sub-triangles.
+    Getting all intersections to meet perfectly at single points is the core challenge —
+    only specific angle sets achieve this.
+    
+  components:
+    bindu:
+      description: "Central point — unmanifest consciousness, the source"
+      count: 1
+    
+    triangles:
+      total: 9
+      downward_shakti: 5   # represent Shakti, feminine, creation
+      upward_shiva: 4      # represent Shiva, masculine, consciousness
+      
+    sub_triangles:
+      total: 43
+      description: "Created by all intersections of the 9 main triangles"
+      
+    circles:
+      inner_lotus: 8    # petals — Ashtadala Padma
+      outer_lotus: 16   # petals — Shodasha Dala Padma
+      
+    enclosures:
+      bhupura_lines: 3  # concentric square "earth" enclosure with 4 gates
+      
+  layers_from_center:
+    - layer: 1
+      name: "Bindu"
+      form: "Point"
+      petals_or_regions: 1
+    - layer: 2
+      name: "Trikona"
+      form: "Triangle (the innermost)"
+      petals_or_regions: 1
+    - layer: 3
+      name: "Ashtara (8 triangles)"
+      form: "8 sub-triangles around the central triangle"
+      petals_or_regions: 8
+    - layer: 4
+      name: "Dasara I (10 triangles)"
+      form: "Inner 10-triangle ring"
+      petals_or_regions: 10
+    - layer: 5
+      name: "Dasara II (10 triangles)"
+      form: "Outer 10-triangle ring"
+      petals_or_regions: 10
+    - layer: 6
+      name: "Chaturdashara (14 triangles)"
+      form: "14-triangle outermost ring"
+      petals_or_regions: 14
+    - layer: 7
+      name: "Ashtadala Padma"
+      form: "8-petal lotus"
+      petals_or_regions: 8
+    - layer: 8
+      name: "Shodasha Dala"
+      form: "16-petal lotus"
+      petals_or_regions: 16
+    - layer: 9
+      name: "Bhupura"
+      form: "Square earth enclosure with 4 gates"
+      petals_or_regions: 4
+
+  mathematical_constraint: >
+    The defining mathematical challenge: all nine triangles must intersect such that
+    every intersection involves exactly three lines meeting at a single point (not
+    forming tiny triangles at intersections). This requires specific angle values that
+    cannot be expressed as simple rational multiples of π. The Sri Yantra is
+    mathematically over-constrained — only specific solutions exist.
+    
+  known_numerical_solutions:
+    method_1_concentric:
+      description: "Triangles as concentric with specific height ratios"
+      approximate_angles:
+        upward_triangles: [52.73, 49.76, 46.21, 38.61]  # degrees, half-angle
+        downward_triangles: [54.43, 51.58, 48.22, 42.13, 31.72]
+    method_2_iterative:
+      description: "Numerically solve for point intersections"
+      note: "Required computer assistance to find precise values"
+
+mathematics:
+  core_constant: "Transcendental (no simple closed form for exact angles)"
+  
+  count_properties:
+    total_triangles: 9
+    sub_triangles: 43
+    intersection_points: "Hundreds (most are 3-line intersections)"
+    rotational_symmetry: 1  # The Sri Yantra has NO rotational symmetry > 1!
+    bilateral_symmetry: 1   # One vertical axis of symmetry
+    
+  note_on_symmetry: >
+    Surprisingly, the Sri Yantra has only a SINGLE axis of bilateral symmetry
+    (vertical). Despite its apparent radial symmetry, it is NOT rotationally
+    symmetric. This makes it unique among sacred mandalas.
+    
+  dimensional_variants:
+    2d_plane: "Standard flat form — Bhuprasthar"
+    3d_meru: "Pyramidal 3D form — Meru Chakra — with 9 concentric levels rising to bindu at apex"
+    
+  overconstrained_system: >
+    The 9 triangles have collectively 9×2 = 18 free parameters (position + angle for each),
+    but the constraint that all lines meet at points rather than forming micro-triangles
+    imposes more constraints than degrees of freedom. Only discrete solution families exist.
+
+historical:
+  age: "Vedic period — possibly 3000+ years old (estimates vary widely)"
+  oldest_texts: "Rigveda references to Tripura Sundari (deity of Sri Yantra)"
+  origin_tradition: "Shaktism — worship of the Divine Mother / Shakti"
+  key_texts:
+    - "Vamakeshvara Tantra"
+    - "Nityashodashikarnava"
+    - "Tripura Upanishad"
+    - "Devi Bhagavata Purana"
+  historical_use:
+    - "Meditation support (yantra = 'instrument' for focusing mind)"
+    - "Temple altar centerpiece"
+    - "Mandala for ritual worship (puja)"
+    - "Sacred architectural proportions"
+
+deity: "Tripura Sundari (Lalita, Rajarajeshvari) — the beautiful goddess of the three worlds"
+
+symbolism:
+  traditions:
+    tantric_hinduism:
+      - "Union of Shiva (upward triangles) and Shakti (downward triangles)"
+      - "The entire cosmos in geometrical form"
+      - "The body of the goddess Tripura Sundari"
+      - "Map of consciousness from gross (bhupura) to subtle (bindu)"
+    vedanta:
+      - "Maya — the appearance of multiplicity from unity"
+    general_esoteric:
+      - "Perfect balance of masculine and feminine"
+      - "The mathematical fingerprint of creation"
+  
+  layer_correspondences:
+    bindu: "Undifferentiated consciousness, turiya state"
+    inner_triangle: "Three gunas (tamas, rajas, sattva) or three goddesses"
+    8_triangles: "8 Bhairavas (forms of Shiva)"
+    inner_10: "10 Vishnu avatars or 10 vital breaths"
+    outer_10: "10 directions"
+    14: "14 worlds or 14 forms of Shiva"
+    8_lotus: "8 directions + Matrikas"
+    16_lotus: "16 vowels or 16 lunar digits"
+    bhupura: "Earth element, physical manifestation"
+
+  meditation_use: >
+    Traditionally meditated upon by moving the gaze from the outer square inward,
+    layer by layer, dissolving gross to subtle, arriving at the bindu as
+    pure undifferentiated awareness. The reverse path (bindu outward)
+    represents creation/manifestation.
+
+color_palettes:
+  psychedelic:
+    - name: "Tantric Fire"
+      hex: ["#FF0000", "#FF6600", "#FFCC00", "#FF00CC", "#CC00FF", "#FF3399"]
+    - name: "Shakti Plasma"
+      hex: ["#FF007F", "#FF3300", "#FF9900", "#FFFF00", "#FF00FF", "#9900FF"]
+    - name: "Cosmic Yoni"
+      hex: ["#8B0000", "#DC143C", "#FF1493", "#FF69B4", "#FFB6C1", "#FFFACD"]
+  traditional:
+    - name: "Kumkum Red"
+      hex: ["#8B0000", "#B22222", "#DC143C", "#FF6347", "#FFD700", "#FFFFFF"]
+    - name: "Saffron Gold"
+      hex: ["#FF6600", "#FF8C00", "#FFA500", "#FFD700", "#FFFF00", "#FFFFFF"]
+
+art_direction:
+  aesthetic_tags:
+    - "sri yantra"
+    - "sri chakra"
+    - "tantric mandala"
+    - "nine triangles"
+    - "shakti shiva union"
+    - "vedic sacred geometry"
+    - "43 sub-triangles"
+    - "Hindu mysticism geometry"
+    - "yoni yantra"
+    - "bindu center"
+    - "meru pyramid"
+    - "lotus mandala"
+    - "divine feminine geometry"
+  prompt_fragments:
+    - "Sri Yantra mandala, nine interlocking triangles, glowing saffron and red on black, bindu glowing at center"
+    - "Sri Chakra sacred geometry, 43 sub-triangles, psychedelic neon, tantric maximalist, lotus petals and bhupura"
+    - "Sri Yantra Meru (3D), pyramidal sacred geometry, gold and vermillion, hovering in cosmic space"
+    - "Ultra-detailed Sri Yantra, intricate line precision, iridescent mandala, fractal depth at center bindu"
+    - "Sri Yantra animation, triangles materializing layer by layer from bindu outward, electric tantric fire colors"
+  glsl_notes: >
+    Cannot be generated purely analytically — store precomputed triangle vertices.
+    For real-time: use SDF of each triangle (9 SDFs), then compute intersection regions.
+    Color by which 'layer' (count of enclosing triangles) the point is in.
+    Animate: modulate each triangle's opacity/glow with sin(time × layer_index × 0.5).
+    For Meru (3D): extrude each layer at increasing heights, apply cone transform.
+
+generative:
+  p5js_sketch: "sketches/p5js/sri_yantra.html"
+  shader_file: "shaders/fragment/sri_yantra.frag"
+  svg_generator: "svg/generators/sri_yantra.js"
+  key_parameters:
+    variant: "2d"       # 2d | meru_3d
+    show_lotus: true
+    show_bhupura: true
+    animate: true
+    color_scheme: "tantric"
+
+references:
+  - "Boner, A. & Sharma, S. R. (1966). Silpa Prakasa. Leiden: Brill."
+  - "Khanna, M. (1979). Yantra: The Tantric Symbol of Cosmic Unity. Thames & Hudson."
+  - "Rao, S. K. R. (1988). The Yantras. International Book House."
+  - "Huet, G. (2004). Formal Structure of Sanskrit Text. Springer."
+  - "https://en.wikipedia.org/wiki/Sri_Yantra"
+  - "Kulaichev, A. P. (1984). Sriyantra and its Mathematical Properties. Indian Journal of History of Science."
